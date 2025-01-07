@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'ClimateCrisisKR-1979';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/ClimateCrisisKR-1979.woff2') format('woff2');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: '양진체';
+            src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * { /* "*" ->밑에 있는 모든 태그들 */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '양진체', Courier, monospace;
+        }
+
+        #container {
+            width: 560px;
+            padding: 50px;
+            margin: 0 auto;
+        }
+
+        #container > #nav {
+            background-color: rgb(238, 238, 238);
+        }
+
+        #container > #nav h1 {
+            display: inline;
+        }    
+
+        #container > #nav > div { 
+            padding: 20px;
+        }
+
+        #container > #footer {
+            background-color: rgb(238, 238, 238);
+            padding: 20px;
+            text-align: center;
+        }
+
+        #container th, td {
+            padding: 10px;
+        }
+
+        #container table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"><!-- div -> 구역나누기, id -> 변수설정-->
+        <div id="nav" style="overflow: hidden;">
+            <!-- float -> 설정 후 넣어주기 style="overflow: hidden;" -->
+            <div style="float: left;">
+                <a href=""><h1>홈</h1></a>
+            </div>
+            <div style="float: right;">
+                <a href=""><h1>메뉴1</h1></a>
+                <a href=""><h1>메뉴2</h1></a>
+            </div>
+        </div>
+        <div>
+            <div style="overflow: hidden;">
+                <figure style="float: left;">
+                    <img src="images/main2.jpg" alt="" style="width: 170px;" height="200px" >
+                    <figcaption>강아지</figcaption>
+                </figure>
+                <figure>
+                    <img src="images/main1.jpg" alt="" style="width: 170px;" height="200px">
+                    <figcaption>강아지지</figcaption>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus harum error minima temporibus officia odit ipsam sit eaque soluta expedita. Accusamus non reiciendis adipisci laboriosam vel quo at amet magni.</p>
+                 </figure>
+            </div>    
+        </div>
+        <div>
+            <h1>Education</h1>
+    <table style="width: 100%;">
+        <caption>학력사항</caption>
+        <thead>
+            <tr>
+                <th>출신학교</th>
+                <th>전공</th>
+                <th>기간</th>
+                <th>구분</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ㅁㅁ대학교</td>
+                <td>컴퓨터공학</td>
+                <td>2004.3 ~ 2008.2</td>
+                <td>졸업</td>
+            </tr>
+            <tr>
+                <td>ㅇㅇㅇ고등학교</td>
+                <td>-</td>
+                <td>2001.3 ~ 2004.2</td>
+                <td>졸업</td>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+        <div id="footer">
+            <h1>copyright yun</h1></div>
+    </div>
+</body>
+
+</html>
+
+<!-- 선택자
+ id 선택자 -> #
+ tag 선택자 div table
+ 자식선택자 -> #container > div
+ 자손선택자(밑에 어딘가에 있는) -> #container div
+ 
+ 부모태그에 overflow : hidden
+ float : left -> 왼쪽정렬 inline나오기-->
