@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @font-face {
+            font-family: '양진체';
+            src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        *{
+            padding: 0; margin: 0;
+            box-sizing: border-box;
+            font-family: '양진체', Courier, monospace;
+        }
+
+        #app{
+            width: 560px; 
+            height: 100vh;
+            position: relative; /* ->poosition의 기준이 되는 부모태그에 추가  */
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        #app > #nav{                 
+            padding-left: 30px;
+            background-color: rgb(238, 238, 238);
+        }
+
+        #app > #nav > #menu{          
+            position: absolute;    /*-> position으로 좌표지정 */
+            top: 0; right: 0;
+            padding: 20px;
+        }
+
+        #app > #content{
+            padding: 30px;
+        }
+
+        #app > #content> #section{
+            margin-bottom: 100px;
+        }
+
+        #app > #content > #section1 > input{
+            border: 0;
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid black;
+            height: 24px;
+            font-size: 1.5rem;
+            padding: 10px;
+            /* px(크기) %(비율) rem(배수 18px 2rem = 36px) */
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            
+        }
+
+        #app > #content > #section1 > h1{
+            margin-bottom: 30px;
+        }
+
+        #app > #footer{
+            background-color: rgb(238, 238, 238);
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+    </style>
+
+</div>
+</head>
+<body>
+    <div id="app">
+        <div id="nav">
+            <div>
+                <a href="index.html"><img src="image(1).png" alt=""></a>
+            </div>
+            <div id="menu">
+                <a href="signIn.html">로그인</a>
+                <a href="signUp.html">회원가입</a>
+            </div>
+        </div>
+        <div id="content">
+            <div id="section1">
+                <h1>아이디</h1>
+                <input type="text" name="" id="" placeholder="아이디">
+                <h1>비밀번호</h1>
+                <input type="text" name="" id="" placeholder="비밀번호">
+            </div>
+            <div>
+                <h1>간편로그인</h1>
+            </div>            
+        </div>
+        <div id="footer">
+            <h1>copy-right 소연</h1>
+        </div>
+    </div>    
+
+</body>
+</html>
+
