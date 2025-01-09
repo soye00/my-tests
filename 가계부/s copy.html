@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        #container{
+            width: 393px; height: 852px;
+            background-color: beige;
+        }
+
+        #container > #Top{
+            background-color: black;
+            height: 300px;
+            text-align: center;            
+            position: relative;  
+            
+        }
+
+        #container > #Top > #suji{
+            background-color: aliceblue;
+            position: absolute;
+            top: 0;
+            left: 115px;                      
+        }
+
+        #container > #Top > #Day{
+            position: absolute;
+            top: 70px;
+
+        }
+
+        #container > #Top > #Money{
+
+        }
+
+        #container > #Top > #Card{
+            position: absolute;
+            bottom: 0;
+
+        }
+
+        
+
+        #container > #Top > #suji > #plus > input{
+            width: 90px; height: 65px;
+            font-size: large;
+            border: 0;
+            border-radius: 25px 0 0 25px;                  
+        }
+
+        #container > #Top > #suji > #minus > input{
+            width: 90px; height: 65px;
+            font-size: large;
+            border: 0;
+            border-radius: 0 25px 25px 0;                        
+        }
+        
+
+        
+
+    </style>
+</head>
+<body>
+<div id="container">
+        <div id=icon style="overflow: hidden;">
+            <div style="float: left;">
+                <input type="image" src="images/back.svg" alt="back">
+            </div>
+            <div style="float: right;">
+                <input type="image" src="images/check.svg" alt="done">
+            </div>
+        </div>
+        <div id="Top">
+            <div id="suji">
+                <div id="plus">
+                    <input type="button" value="수입">                
+                </div>
+                <div id="minus">
+                    <input type="button" value="지출">
+                </div>
+            </div>
+
+            <div id="Day">
+                <!-- 날짜선택 -->
+                <input type="date" name="" id="">
+            </div>
+
+            <div id="Money">
+                <!-- 금액입력 -->
+                <input type="number" name="" id="" value="" placeholder="0원">
+            </div>            
+        
+            <div id="Card">
+            <!-- 지출수단 -->              
+                 <input type="button" value="신용카드">
+                 <input type="button" value="체크카드">
+                 <input type="button" value="현금">
+                 <input type="button" value="계좌이체">                
+            </div>
+
+        </div>
+        <div>
+            <p>카테고리</p>
+
+        </div>
+        <div>
+            <p>메모</p>
+            <input type="text" name="" id="" value="메모를 입력하세요">
+        </div>
+        <div>
+            <p>사진첨부</p>
+
+        </div>
+</div>
+</body>
+</html>
