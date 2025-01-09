@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0 auto;
+      padding: o;
+      box-sizing: border-box;
+    }
+    #container {
+      width: 393px;
+      height: 852px;
+      background-color: bisque;
+    }
+    #Header{
+      overflow: hidden;
+    }
+    #Header > #back{
+      float: left;
+    }
+    #Header > #done{
+      float: right;
+      
+    }
+    #Header > #done > button{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+<body>
+<div id="container">
+  <div id="Header">
+    <div id="back">
+      <a href=""><img src="images/++.png" alt=""></a>
+    </div>
+    <div id="done">
+      <button type="submit"><img src="images/+.png" alt=""></button>
+    </div>
+  </div>
+  <div id="content">
+    <div id="plmi">
+      <input type="radio" name="kk" id="plus">
+      <label for="plus">수입</label>
+      <input type="radio" name="kk" id="minus">
+      <label for="minus">지출</label>
+    </div>
+    <div id="day">
+      <input type="date" name="" id="">
+    </div>
+    <div id="money">
+      <input type="number" name="" id="" placeholder="0원">
+    </div>
+    <div>
+      <input type="checkbox" name="pay" id="card">
+      <label for="card">신용카드</label>
+      <input type="checkbox" name="pay" id="ch-card">
+      <label for="ch-card">체크카드</label>
+      <input type="checkbox" name="pay" id="cash">
+      <label for="cash">현금</label>
+      <input type="checkbox" name="pay" id="account">
+      <label for="account">계좌이체</label>
+      
+    </div>
+  </div>
+</div>
+  
+</body>
+</html>
