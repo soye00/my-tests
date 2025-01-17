@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(200, 100, 200);
+            transition-property: background-color, transform, width, height;
+            transition-duration: 5s, 2s;
+            transition-timing-function: ease;
+            transition-delay: 2s;
+            
+        }
+        div:hover{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(200, 200, 200);
+            transform: rotate(180deg);
+        }
+        
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
