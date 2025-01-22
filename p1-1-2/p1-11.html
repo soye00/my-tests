@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+    *{
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'GmarketSansMedium';
+    }
+    #container{
+      margin: 0 auto; 
+      /* background-color: antiquewhite; */
+      width: 393px;
+      height: 852px;
+    }
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;           
+    }
+    .header-img-1{
+      width: 28px;
+      height: 28px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    .header-img-2{
+      width: 35px;
+      height: 35px;
+      margin-top: 2px;
+      margin-right: 2px;
+    }
+    .header-h4{
+      font-size: 18px;
+      margin-top: 7px;
+    }
+    .text h5{
+      font-size: 15px;
+      font-weight: lighter;
+      margin: 10px;
+    }
+    .box-toggle-input{
+      display: none;
+    }
+    .box-toggle-label{
+      display: block;
+      width: 45px;
+      height: 25px;
+      background-color: lightgray;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+
+    }
+    .box-toggle-label::before{
+      content: "";
+      width: 20px;
+      height: 19px;
+      position: absolute;
+      top: 2px; left: 2px;
+      border: 1px solid rgb(74, 72, 72);
+      background-color: whitesmoke;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+    .box-toggle-input:checked + .box-toggle-label{
+      background-color: rgb(74, 72, 72);    
+    }
+    .box-toggle-input:checked + .box-toggle-label::before{
+      transform: translateX(19px);
+    }
+    .box{
+      margin-top: 15px;
+      display: flex;
+      align-items: center;      
+      padding: 8px;
+      /* background-color: red; */
+      margin: 10px;
+      border-radius: 12px;
+      background-color: snow;
+    }
+    .box-img img{
+      width: 30px;
+      height: 30px;
+    }
+    .box-text h5{
+      font-size: 18px;
+      font-weight: lighter;
+      width: 190px;
+    }
+    .box div{
+      margin: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="header">
+      <a href=""><img  class="header-img-1" src="images-1/x 1.png" alt=""></a>
+      <h4 class="header-h4">지출 카테고리</h4>
+      <a href=""><img class="header-img-2" src="images-1/plus.png" alt="" width="40" height="40"></a>
+    </div>
+    <div class="text">
+      <h5>기본 카테고리</h5>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/eat.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>식비</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/car.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>교통/자동차</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/des.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>카페/간식</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/cul.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>문화/여가</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/date.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>데이트</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/frie.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>우정/술/유흥</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/baby.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>육아</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check">
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/fami.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>가족</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/gift.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>경조/선물</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/mart.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>생활</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/dog.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>반려동물</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check">
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/make.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>패션/뷰티</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/tra.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>여행/숙박</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/po.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>금융/투자</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/stu.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>교육/학습</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/medi.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>의료/건강</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/heal.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>운동</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/pho.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>통신/주거</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/insur.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>보험</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-img">
+        <img src="images-1/ott.png" alt="">
+      </div>
+      <div class="box-text">
+        <h5>구독</h5>
+      </div>
+      <div class="box-toggle">
+        <input class="box-toggle-input" type="checkbox" name="" id="check" checked>
+        <label class="box-toggle-label" for="check"></label>
+      </div>
+    </div>
+    
+
+  </div>
+  
+</body>
+</html>
