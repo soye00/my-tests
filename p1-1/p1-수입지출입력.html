@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="p1-수입지출입력.css">
+  <script src="https://kit.fontawesome.com/582d1bfdc8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="back">
+      <a href=""><img src="images-1/Vector.png" alt=""></a>
+    </div>
+    <div id="done">
+      <a href=""><img src="images-1/check.png" alt=""></a>
+    </div>
+    <div id="date">
+      <input type="date" name="" id="">
+    </div>
+    <input type="radio" name="mipl" id="tab1" checked>
+    <input type="radio" name="mipl" id="tab2">
+    <div id="mp">
+      <div class="buttons">
+        <span class="minus">
+          <label for="tab1">지출</label>
+        </span>
+        <span class="plus">
+          <label for="tab2">수입</label>
+        </span>
+      </div>
+    </div>    
+    <div class="mtab">
+      <h4 style="font-size: 15px; font-weight: lighter;">카테고리</h4>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/eat.png" alt="">
+          <h5>식비</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/car.png" alt="">
+          <h5>교통/자동차</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/des.png" alt="">
+          <h5>카페/간식</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/cul.png" alt="">
+          <h5>문화/여가</h5>
+        </li>
+      </ul>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/date.png" alt="">
+          <h5>데이트</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/frie.png" alt="">
+          <h5>우정/술/유흥</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/frie.png" alt="">
+          <h5>가족</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/gift.png" alt="">
+          <h5>경조/선물</h5>
+        </li>
+      </ul>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/mart.png" alt="">
+          <h5>생활</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/make.png" alt="">
+          <h5>패션/뷰티</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/tra.png" alt="">
+          <h5>여행/숙박</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/po.png" alt="">
+          <h5>금융/투자</h5>
+        </li>
+      </ul>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/stu.png" alt="">
+          <h5>교육/학습</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/medi.png" alt="">
+          <h5>의료/건강</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/heal.png" alt="">
+          <h5>운동</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/pho.png" alt="">
+          <h5>통신/주거</h5>
+        </li>
+      </ul>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/insur.png" alt="">
+          <h5>보험</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/ott.png" alt="">
+          <h5>구독</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/etc.png" alt="">
+          <h5>기타</h5>
+        </li>
+        <li>       
+          <a href="p1-카테고리추가.html" style="text-decoration: none; display: inline-block;">
+          <input type="image" src="images-1/plus.png" alt="">
+          <h5>추가</h5>
+          </a>   
+        </li>
+      </ul>
+    </div>
+    <div class="mtab2">
+      <h4>카테고리</h4>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/cash.png" alt="">
+          <h5>월급</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/addin.png" alt="">
+          <h5>부수입</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/po.png" alt="">
+          <h5>용돈</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/bonus.png" alt="">
+          <h5>보너스</h5>
+        </li>        
+      </ul>
+      <ul class="cate">
+        <li>
+          <input type="image" src="images-1/card 1.png" alt="">
+          <h5>캐시백</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/pay 1.png" alt="">
+          <h5>더치페이</h5>
+        </li>
+        <li>
+          <input type="image" src="images-1/etc.png" alt="">
+          <h5>기타</h5>
+        </li>
+        <li>
+          <a href="p1-카테고리추가.html" style="text-decoration: none; display: inline-block;">
+          <input type="image" src="images-1/plus.png" alt="">
+          <h5>추가</h5>
+          </a>
+        </li>        
+      </ul>
+    </div>
+    <div id="money">
+      <input type="text" inputmode="numeric" id="" placeholder="0원">
+    </div>
+    <div id="card">
+      <input type="radio" name="cardtab" id="credit">
+      <input type="radio" name="cardtab" id="checkcard">
+      <input type="radio" name="cardtab" id="cash">
+      <input type="radio" name="cardtab" id="account">
+      <div class="btn-card">
+        <label for="credit">신용카드</label>
+        <label for="checkcard">체크카드</label>
+        <label for="cash">현금</label>
+        <label for="account">계좌이체</label>
+      </div>
+    </div>
+    <div id="memo">
+      <h4>메모</h4>
+      <input type="text" name="" id="" placeholder="메모를 입력하세요.">
+    </div>
+
+  </div>
+
+</body>
+
+</html>

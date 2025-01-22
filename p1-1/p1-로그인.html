@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+    *{
+      margin: 0 auto; padding: 0;
+      box-sizing: border-box;
+      font-family: 'GmarketSansMedium';
+    }
+    a{
+      text-decoration: none;
+      color: black;
+      cursor: pointer;
+    }
+    #container hr{
+      width: 80%;
+      margin: 15px;
+      border: 0.5px solid rgb(216, 216, 216);
+      
+    }
+    #container{
+      /* background-color: antiquewhite; */
+      width: 393px;
+      height: 852px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header > h4{
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    #login-input-btn{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .login-input{
+      width: 311px;
+      height: 56px;
+      text-align: left;
+      font-size: 20px;
+      padding-left: 20px;
+      border: none;
+      background-color: rgb(233,233,233);
+      border-radius: 30px;
+    }
+    .login-btn{
+      margin-top: 20px;
+      width: 311px;
+      height: 56px;
+      background-color: rgb(201, 201, 201);
+      border: none;
+      border-radius: 12px;
+      font-size: 24px;
+      color: rgb(78, 76, 76);
+      cursor: pointer;
+    }
+    .login-input:hover{
+      background-color: rgb(230, 225, 225);
+    }
+    .login-btn:hover{
+      background-color: rgb(165, 160, 160);
+    }
+    .find{
+      margin-top: 15px;
+      margin-left: 280px;
+      font-size: 15px;
+      text-decoration: underline;
+      margin-bottom: 15px;
+    }
+    .account-text{
+      margin-top: 25px;
+      padding-left: 5PX;
+      width: 311px;
+    }
+    .account-text > h5{
+      font-size: 18px;      
+      color: rgb(78, 76, 76);
+    }
+    .account-text > p{      
+      color: rgb(78, 76, 76);
+      font-size: smaller;
+      margin-top: 5px;
+    }
+    .account{
+      margin-top: 10px;
+    }
+    .account div a p{
+      color: rgb(47, 45, 45);
+      margin-left: 0;
+    }
+    .account div a img{
+      margin-left: 10px;
+    }
+    .account div a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }    
+    .account .account-goo{
+      width: 300px;
+      height: 50px;
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+      line-height: 50px;
+      margin-top: 10px;      
+      border: 0.5px solid rgb(216, 216, 216);
+      border-radius: 5px;
+    }
+    .account .account-goo:hover{
+      background-color: rgb(240, 240, 240);
+    }
+    .account .account-ka{
+      width: 300px;
+      height: 50px;
+      background-color: rgb(252, 234, 0);
+      text-align: center;
+      line-height: 50px;
+      margin-top: 10px;      
+      border: 0.5px solid rgb(216, 216, 216);
+      border-radius: 5px;
+    }
+    .account .account-ka:hover{
+      background-color: rgb(232, 217, 5);
+    }
+    .account .account-na{
+      width: 300px;
+      height: 50px;
+      background-color: rgb(77, 211, 64);
+      text-align: center;
+      line-height: 50px;
+      margin-top: 10px;      
+      border: 0.5px solid rgb(216, 216, 216);
+      border-radius: 5px;
+    }
+    .account .account-na:hover{
+      background-color: rgb(60, 186, 48);
+    }
+    .account .account-id{
+      width: 300px;
+      height: 50px;
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+      line-height: 50px;
+      margin-top: 10px;      
+      border: 0.5px solid rgb(216, 216, 216);
+      border-radius: 5px;
+    }
+    .account .account-id:hover{
+      background-color: rgb(240, 240, 240);
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="header">
+      <h4>로그인</h4>
+    </div>
+    <div id="login-input-btn">
+      <input class="login-input" type="text" name="" id="id" placeholder="아이디 또는 이메일">
+      <input class="login-input" type="password" name="" id="pw" placeholder="비밀번호">
+      <button class="login-btn" type="submit">로그인</button>
+    </div>
+    <div class="find">
+      <a href="" style="
+      color: rgb(78, 76, 76);">계정찾기</a>
+    </div>   
+    <hr>
+    <div class="account-text">
+      <h5>회원가입하기</h5>
+      <p>소셜 로그인 및 이메일로 가입할 수 있습니다.</p>
+    </div>
+    <div class="account">
+      <div class="account-goo">
+        <a href="">
+          <img src="images-1/goo.png" alt="">
+          <p>구글로 시작하기</p>
+        </a>
+      </div>
+      <div class="account-ka">
+        <a href="">
+          <img src="images-1/kaka.png" alt="">
+          <p>카카오로 시작하기</p>
+        </a>
+      </div>
+      <div class="account-na">
+        <a href="">
+          <img src="images-1/na.png" alt="">
+          <p>네이버로 시작하기</p>
+        </a>
+      </div>
+      <div class="account-id">
+        <a href="">
+          <i></i>
+          <p style="margin-right: 70px;">ID/PW 회원가입</p>
+        </a>  
+      </div>
+    </div>
+  </div>
+</body>
+</html>
