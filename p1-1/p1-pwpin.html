@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/582d1bfdc8.js" crossorigin="anonymous"></script>
+  <style>
+    @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+    *{
+      margin: 0 auto; padding: 0;
+      box-sizing: border-box;
+      font-family: 'GmarketSansMedium';
+    }
+    #container{
+      /* background-color: antiquewhite; */
+      width: 393px;
+      height: 852px;
+      margin: 0 auto;
+      position: relative;
+    }
+    #container > #header{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    #container > #pw{
+      position: absolute;
+      top: 170px; left: 83px;
+      /* background-color: red; */
+    }    
+    .dot{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: lightgray;
+      border-radius: 100%;
+      margin: 10px;     
+      border: none;
+    }
+    .pwsection > button.dot:nth-child(1){
+      margin-left: 34px;
+    }
+    #pwnumber{      
+      overflow: hidden;
+      position: absolute;
+      top: 350px;
+      left: 21.5px;
+      width: 350px;      
+    }
+    #pwnumber > .number{
+      float: left;
+      width: 33.33%;
+      height: 100px;
+      border: none;
+      background-color: transparent;
+      font-size: 30px;
+      cursor: pointer;
+    }
+      
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <div>
+        <a href=""><img src="images-1/x 1.png" alt="" style="margin-top: 5px;"></a>        
+      </div>
+    </div>
+    <div id="pw">
+      <h3 style="margin: 10px;">비밀번호를 입력해주세요</h3>
+      <div class="pwsection">
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+      </div>
+    </div>
+    <div id="pwnumber">
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="number"></button>
+      <button class="number">0</button>
+      <button class="number"><i class="fa-solid fa-delete-left"></i><button>
+    </div>
+  </div>
+</body>
+</html>
