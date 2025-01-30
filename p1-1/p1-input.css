@@ -53,7 +53,7 @@ input[type="radio"]{
 .buttons > .minus,.plus{
 overflow: hidden;
 }
-.buttons > .minus > label{
+.buttons > .minus{
   background-color: lightgray;
   width: 84px; height: 35px;
   padding: 8.5px;
@@ -62,7 +62,7 @@ overflow: hidden;
   border-radius: 10px 0 0 10px;
   cursor: pointer;
 }
-.buttons > .plus > label{
+.buttons > .plus{
   background-color: lightgray;
   width: 84px; height: 35px;
   padding: 8.5px;
@@ -72,11 +72,11 @@ overflow: hidden;
   cursor: pointer;
 }
 
-#tab1:checked ~ #mp > .buttons > .minus > label{
+#tab1:checked ~ #mp > .buttons > .minus{
   background-color: lightcoral;
   color: aliceblue;
 }
-#tab2:checked ~ #mp > .buttons > .plus > label{
+#tab2:checked ~ #mp > .buttons > .plus{
   background-color: lightcoral;
   color: aliceblue;
 }
@@ -99,7 +99,15 @@ overflow: hidden;
   position: absolute;
   top: 135px; left: 36px;
 }
-
+#container > .mtab,.mtab2{
+  display: none;
+}
+#tab1:checked ~ .mtab{
+  display: block;
+}
+#tab2:checked ~ .mtab2{
+  display: block;
+}
 .cate{
   overflow: hidden;
 }
@@ -185,15 +193,5 @@ overflow: hidden;
   width: 343px;
   height: 50px;
   border: none;
-  background-color: lightgray;
-  
-}
-#container > .mtab,.mtab2{
-  display: none;
-}
-#tab1:checked ~ .mtab{
-  display: block;
-}
-#tab2:checked ~ .mtab2{
-  display: block;
+  background-color: lightgray; 
 }
