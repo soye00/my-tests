@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #wrap{
+            margin: 0 auto;
+            width: 960px;
+            background-color: rgb(230, 230, 230);
+
+        }
+        .row{
+            overflow: hidden;
+        }
+        .col{float: left; overflow: hidden; padding: 0.5rem;}
+        .col-1{width: 80px;}
+        .col-2{width: 160px;}
+        .col-3{width: 240px;}
+        .col-4{width: 320px;}
+        .col-5{width: 400px;}
+        .col-6{width: 480px;}
+        .col-7{width: 560px;}
+        .col-8{width: 640px;}
+        .col-9{width: 720px;}
+        .col-10{width: 800px;}
+        .col-11{width: 880px; background-color: aquamarine;}
+        .col-12{width: 960px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="row">
+            <div class="col col-1">
+                <h1>lorem</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing </p>
+            </div>
+            <div class="col col-11">
+                <h1>loren</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-5">
+                <h1>loren</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p>
+            </div>
+            <div class="col col-4">
+                <h1>loren</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p>
+            </div>
+            <div class="col col-3">
+                <h1>loren</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p>
+            </div>
+        </div>
+       <div class="row">
+        <!-- 8:4 비율 / 12개 중 -->
+        <div class="col col-8">
+            <h1>loren</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p> 
+        </div>
+        <div class="col col-4">
+            <h1>loren</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci placeat provident laborum facere incidunt eaque explicabo numquam, veniam eveniet distinctio aspernatur magni nobis vero necessitatibus commodi omnis veritatis ipsum voluptate!</p> 
+        </div>
+       </div>
+   
+    </div>
+</body>
+</html>
