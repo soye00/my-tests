@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;     
+            grid-template-areas: 
+            "item1 item1 item2"
+            "item3 item3 item3" /* item3*3 -> X  item3 으로 3칸 채워짐*/
+            "item4 . item5"
+            ;       
+        }
+        .items{
+            padding: 10px;
+            background-color: rgb(200, 100, 200);
+        }
+        .items:nth-child(2n){
+            background-color: rgb(100, 120, 100);
+        }
+        .item1{
+           grid-area: item1;
+        }
+        .item2{
+            grid-area: item2;
+        }
+        .item3{
+            grid-area: item3;
+        }
+        .item4{
+            grid-area: item4;
+        }
+        .item5{
+            grid-area: item5;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="items item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatibus similique quis odio maxime! Nemo impedit veniam quod consequatur laboriosam laudantium possimus, facilis aliquam, odio sapiente exercitationem provident, necessitatibus temporibus!</div>
+        <div class="items item2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit totam error, voluptatum exercitationem maxime aperiam amet adipisci natus deleniti delectus! At, consequatur vel sunt ut sequi atque animi dolore mollitia.</div>
+        <div class="items item3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit totam error, voluptatum exercitationem maxime aperiam amet adipisci natus deleniti delectus! At, consequatur vel sunt ut sequi atque animi dolore mollitia.</div>
+        <div class="items item4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit totam error, voluptatum exercitationem maxime aperiam amet adipisci natus deleniti delectus! At, consequatur vel sunt ut sequi atque animi dolore mollitia.</div>
+        <div class="items item5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit totam error, voluptatum exercitationem maxime aperiam amet adipisci natus deleniti delectus! At, consequatur vel sunt ut sequi atque animi dolore mollitia.</div>
+    </div>
+</body>
+</html>
