@@ -1,27 +1,50 @@
+
+@font-face {
+    font-family: "KoPub Dotum";
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url("https://cdn.jsdelivr.net/gh/fonts-archive/KoPubDotum/KoPubDotum-Light.woff2")
+    format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/fonts-archive/KoPubDotum/KoPubDotum-Light.woff")
+    format("woff"),
+    url("https://cdn.jsdelivr.net/gh/fonts-archive/KoPubDotum/KoPubDotum-Light.otf")
+    format("opentype"),
+    url("https://cdn.jsdelivr.net/gh/fonts-archive/KoPubDotum/KoPubDotum-Light.ttf")
+    format("truetype");
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "KoPub Dotum", serif ;
 }
 li{
     list-style: none;
 }
 #container{
 }
-#container .title{
+.title{
     text-align: center;
     color: dodgerblue;
     font-weight: bold;
     font-size: 2.0rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
 }
 #container .sub-title{
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 .info-service ul{
     display: flex;
     justify-content: center;
+}
+.info-circle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .li-info-circle{
     background-color: rgba(246, 246, 246, 1);
@@ -30,26 +53,70 @@ li{
     border-radius: 50%;
     width: 18rem;
     height: 18rem;
+    text-align: center;
 }
 .info-circle-num{
     text-align: center;
     font-size: 1.5rem;
     color: rgba(254, 174, 54, 1);
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
 }
 .info-circle-txt{
     text-align: center;
     font-weight: bolder;
+    margin-bottom: 0.5rem;
 }
-.info-circle-img{
-    padding: 1.5rem;
-    width: 8rem;
-    height: 8rem;
 
-}
 .info-circle p{
     text-align: center;
+    margin-top: 0.5rem;
 }
+.how-to-use{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    line-height: 3rem;
+}
+.how-to-use a{
+    background-color: rgba(128, 128, 128, 1);
+    color: rgba(247, 247, 247, 1);
+    width: 15rem;
+    height: 3rem;
+    border-radius: 2rem;
+    position: relative;
+    padding-right: 1rem;
+}
+.how-to-use a::after{
+    content: "?";
+    color: rgba(128, 128, 128, 1);
+    background-color: rgba(247, 247, 247, 1);
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    line-height: 1.5rem;
+    position: absolute;
+    top: 0.75rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+.use-circle{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 3rem auto;
+}
+.info-mini-circle{
+    text-align: center;
+}
+.info-mini-circle i{
+    font-size: 3rem;
+    padding: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(246, 246, 246, 1);
+    margin-bottom: 1rem;
+}
+
 
 

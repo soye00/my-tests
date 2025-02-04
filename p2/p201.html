@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="p201.css">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://kit.fontawesome.com/c2939216d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="container">
@@ -17,7 +18,7 @@
                     <div class="info-circle">
                         <h3 class="info-circle-num">01</h3>
                         <h3 class="info-circle-txt">예약</h3>
-                        <img class="info-circle-img" src="images/check.png" alt="예약">
+                        <img src="images/check.png" alt="예약">
                         <p>원하는 서비스를 선택하고<br/> 온라인 결제 완료!</p>
                     </div>
                 </li>
@@ -25,7 +26,7 @@
                     <div class="info-circle">
                         <h3 class="info-circle-num">02</h3>
                         <h3 class="info-circle-txt">이동/보관</h3>
-                        <img class="info-circle-img" src="images/move.png" alt="예약">
+                        <img src="images/move.png" alt="이동,보관">
                         <p>예약 일정에 맞추어<br/>짐을 맡겨주세요.</p>
                     </div>
                 </li>
@@ -33,66 +34,67 @@
                     <div class="info-circle">
                         <h3 class="info-circle-num">03</h3>
                         <h3 class="info-circle-txt">수령</h3>
-                        <img class="info-circle-img" src="images/weight.png" alt="예약">
+                       <img src="images/weight.png" alt="예약">
                         <p>예약한 장소에 배송된<br/>짐을 찾아주세요.</p>
                     </div>
                 </li>
             </ul>    
         </div> <!--info service-->
-        <div class="info-guide">
-            <h1 class="title">서비스 이용방법 및 주의사항</h1>
-            <a href="">이용약관 상세보기</a>
-            <ul class="">
+            <h1 class="title" style="margin-top: 5rem">서비스 이용방법 및 주의사항</h1>
+            <div class="how-to-use">
+                <a href="">이용약관 상세보기</a>
+            </div>
+        <ul class="use-circle">
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-street-view"></i>
                         <p>예약장소<br/>확인 필수</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-clock"></i>
                         <p>예약일정<br/>시간 엄수</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-weight-scale"></i>
                         <p>무게 제한<br/>20kg 이하</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-ruler"></i>
                         <p>높이 제한<br/>합 160cm</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-camera"></i>
                         <p>이용 전<br/>사진촬영</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-sack-dollar"></i>
                         <p>귀중품<br/>직접소지</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-bomb"></i>
                         <p>위험물<br/>제한</p>
                     </div>
                 </li>
                 <li>
                     <div class="info-mini-circle">
-                        <i></i>
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
                         <p>폭우, 폭설<br/>사전취소안내</p>
                     </div>
                 </li>
             </ul>
-        </div><!--info-guide-->
+
     </div><!--container-->
 
 </body>
