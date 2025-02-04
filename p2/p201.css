@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+#container{
+}
+#container .title{
+    text-align: center;
+    color: dodgerblue;
+    font-weight: bold;
+    font-size: 2.0rem;
+    margin-bottom: 1rem;
+}
+#container .sub-title{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.info-service ul{
+    display: flex;
+    justify-content: center;
+}
+.li-info-circle{
+    background-color: rgba(246, 246, 246, 1);
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 50%;
+    width: 18rem;
+    height: 18rem;
+}
+.info-circle-num{
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgba(254, 174, 54, 1);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.info-circle-txt{
+    text-align: center;
+    font-weight: bolder;
+}
+.info-circle-img{
+    padding: 1.5rem;
+    width: 8rem;
+    height: 8rem;
+
+}
+.info-circle p{
+    text-align: center;
+}
+
+
