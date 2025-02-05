@@ -118,6 +118,24 @@ li{
     background-color: rgba(246, 246, 246, 1);
     margin-bottom: 1rem;
 }
+.map{
+    display: flex;
+    justify-content: center;
+}
+.map iframe{
+    width: 70%;
+}
+.map-icon{
+    display: flex;
+    justify-content: center;
+}
+.map-icon li{
+    background-color: rgba(255, 153, 0, 1);
+    margin: 2rem 0.7rem;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
 
 
 
