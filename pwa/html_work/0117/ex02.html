@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>442p~</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        table{
+            width: 100%;
+        }
+        table, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table tr:nth-child(2n+1){
+            /* 2n -> 짝수, 2n + 1 -> 홀수 */
+            background-color: darkcyan;
+        }
+        ul{
+            display: flex;
+            /* 가로정렬을 위하여 : !부모태그에! display:flex */
+            width: 560px;
+            margin: 20px auto;
+        }
+        li{
+            list-style-type: none;
+            /* 가로 정렬 : display: inline; -> width 적용 X */
+            width: 25%;
+            background-color: aquamarine;
+            border: 1px solid black;
+        }
+        li:first-child{
+            border-radius: 1em 0 0 1em;
+        }
+        li:last-child{
+            border-radius: 0 1em 1em 0;
+        }
+
+        a{
+            display: block;
+            width: 100%;            
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;            
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr><td>aaaa</td></tr>
+            <tr><td>bbbb</td></tr>
+            <tr><td>cccc</td></tr>
+            <tr><td>dddd</td></tr>
+            <tr><td>eeee</td></tr>
+            <tr><td>ffff</td></tr>
+            <tr><td>gggg</td></tr>
+            <tr><td>hhh</td></tr>
+            <tr><td>ii</td></tr>
+        </table>
+    </div>
+    <div>
+        <ul>
+            <li><a href="">1111</a></li>
+            <li><a href="">2222</a></li>
+            <li><a href="">3333</a></li>
+            <li><a href="">4444</a></li>
+        </ul>
+    </div>
+</body>
+</html>
