@@ -1,0 +1,152 @@
+.container {
+    width: 393px;
+    height: 852px;
+    background-color: #fff;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+body {
+    background-color:#afafaf;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav {
+    margin: 0 auto;
+    width: 366px;
+    height: 55px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav > input {
+    width: 100%;
+    border: none;
+    /* background-color: #ffecec; */
+    padding: 2px;
+}
+
+.contents {
+    /* background-color: rgb(172, 157, 187); */
+    padding: 5px;
+}
+
+.date,
+.category,
+.payment {
+    margin-top: 20px;
+    padding: 5px;
+    /* background-color: #ffbcbc; */
+}
+
+.date_search,
+.export_container,
+.import_container,
+.payment_container {
+    margin-top: 20px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 7px;
+    padding: 0.5rem 1.2rem;
+    box-shadow: 0 0 10px #afafaf;
+}
+
+.date_search > a {
+    padding: 5px;
+}
+
+.export_choose,
+.import_choose {
+    display: flex;
+}
+
+.export_choose > input,
+.import_choose > input,
+.payment_select > ul > li > input {
+    width: 25px;
+    height: 25px;
+    accent-color: black;
+}
+
+.export_choose > label,
+.import_choose > label {
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.export_select,
+.import_select {
+    margin: 10px auto;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+    gap: 10px;
+}
+
+.export_select > label,
+.import_select > label {
+    height: 70px;
+    padding: 5px;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.export_select > input,
+.import_select > input {
+    display: none;
+}
+
+.export_select > input:checked + label,
+.import_select > input:checked + label {
+    background-color: #dfdfdf;
+    border-radius: 5px;
+}
+
+.export_select > label > img,
+.import_select > label > img {
+    width: 40px;
+    height: 40px;
+}
+
+.export_select > label > p,
+.import_select > label > p {
+    width: 60px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.6rem;
+}
+
+.payment_select {
+    margin: 10px auto;
+}
+
+.payment_select > ul > li {
+    padding: 5px 0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.payment_select > ul > li > input:checked {
+    background-color: black;
+}
+
+.payment_select > ul > li > input:checked ~ label {
+    color: black;
+}
+
+.payment_select > ul > li > label {
+    width: 100%;
+    padding: 5px;
+    color: #d7d7d7;
+    cursor: pointer;
+}
