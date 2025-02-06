@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1af016a2-73f0-4c55-a121-5f10f88eaf3a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/0122/ex01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0122/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0122/ex02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex03.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex04.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex05.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0123/ex06.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex03.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex04.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0124/ex05.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0131/ex01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0131/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0131/ex02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0131/ex03.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/background.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/fonts/JetBrainsMono-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/fonts/JetBrainsSans-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/javascript.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/technologies.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/webstorm-icon-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/public/webstorm-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/src/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0203/src/main2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/background.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/fonts/JetBrainsMono-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/fonts/JetBrainsSans-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/javascript.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/technologies.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/webstorm-icon-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/public/webstorm-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0204/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/counter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/ex02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/javascript.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/src/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/0205/vite.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/src/ex01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/src/javascript.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/0206/src/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/ex03.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coding-test/test2.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2seAoWLnD3IqorIktfpd9ZZsFmP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "E:/ysy/pwa/javascript_work/coding-test/0206/node_modules/esbuild/lib/main.js",
+    "prettierjs.PrettierConfiguration.Package": "E:\\ysy\\pwa\\javascript_work\\0204\\node_modules\\prettier",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1af016a2-73f0-4c55-a121-5f10f88eaf3a" name="Changes" comment="" />
+      <created>1738805841361</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738805841361</updated>
+      <workItem from="1738805842397" duration="148000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
