@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text" name="" id="aa">
+<input type="text" name="" id="bb">
+<button type="button" id="calcu">계산</button>
+
+<script>
+  const $aa = document.querySelector('#aa');
+  const $bb = document.querySelector('#bb');
+  const $button = document.querySelector('#calcu');
+
+  $button.addEventListener('click', function () {
+    alert('누름');
+    console.log($aa.value);
+    console.log($bb.value);
+    var result = Number($aa.value) + Number($bb.value);
+    console.log(result);
+  });
+
+</script>
+</body>
+</html>
