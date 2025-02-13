@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <input type="text" name="" id="comment" placeholder="Enter Your Comment">
+  <input type="text" name="" id="writer" placeholder="Enter Your Writer">
+  <button id="insert"> insert 버튼</button>
+  <button id="select"> select 버튼</button>
+  <div id="result"></div>
+
+</body>
+</html>
+<script>
+  const $writer = document.querySelector('#writer');
+  const $comment = document.querySelector('#comment')
+  const $insert = document.querySelector('#insert');
+  const $select = document.querySelector('#select');
+  const $result = document.querySelector('#result');
+
+  var dbUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
+  var dbPassword = "패스워드 지우기ㅣ기기기ㅣ기긱기기ㅣ기긱기기기ㅣ긱기기ㅣㄱ기기";
+
+  const supabase = window.supabase.createClient(dbUrl, dbPassword);
+
+  async function insertData(comment, writer) {
+    const response = await supabase.from('test').insert([{ comment, writer }]);
+    console.log(response);
+  }
+  async function selectData(){
+    const response = await supabase.from('test').select();
+    let result = '';
+    for(let i = 0; i < response.data.length; i++){
+      console.log(response.data[i]);
+      result += ` <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 10rem;">
+                         <span>순번 ${response.data[i].id}</span>
+                         <span>코멘트 ${response.data[i].comment}</span>
+                         <span>작성자 ${response.data[i].writer}</span>
+                         <span>작성시간 ${response.data[i].created_at}</span></div>`;}
+    $result.innerHTML = result;
+  }
+
+
+  $insert.addEventListener('click', function() {
+    if( $comment.value.length <1 ){
+      alert('작성하세요');
+      $comment.focus();
+      return;
+    } else if($writer.value.length <1 ) {
+      alert('작성자를 입력하세요');
+      writer.focus();
+      return;
+    } else{
+      insertData($comment.value, $writer.value);
+    }
+    console.log($comment.value, $writer.value);
+  });
+  $select.addEventListener('click', function() {
+    selectData();
+  });
+
+
+</script>
