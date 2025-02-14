@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+<body>
+<button id="insert">insert</button>
+<button id="select">select</button>
+<button id="update">update</button>
+<button id="delete">delete</button>
+<div id="datas">
+    <ul>
+        <li>순번 : 1</li>
+        <li>댓글 : 댓글입니다.</li>
+        <li>작성자 : 홍길돌</li>
+        <li>작성일자 : 2025</li>
+    </ul>
+</div>
+
+</body>
+</html>
+<script>
+    const $insert = document.getElementById('insert');
+    const $select = document.querySelector('#select');
+    const $update = document.querySelector('#update');
+    const $delete = document.querySelector('#delete');
+    const $datas = document.querySelector('#datas');
+
+    const dbUrl = 'https://fnlkxffpqrffrlovnmys.supabase.co';
+    const dbPassword = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZubGt4ZmZwcXJmZnJsb3ZubXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjQ5NzYsImV4cCI6MjA1NTAwMDk3Nn0.1Ova5eln8PKRQJaXi9kqUQdTzWzq5cpKRkxd9bykvsw';
+
+    const dbCon = window.supabase.createClient(dbUrl, dbPassword);
+
+                                   // ()=>{;
+    $insert.addEventListener('click', function (){
+        insertData(dbCon);
+        alert('저장하였습니다. ');
+    });
+    $select.addEventListener('click', async function (){
+        const arr = await selectData(dbCon);
+        let answer = '';
+        for( let i = 0; i < arr.length; i++ ){
+            answer = answer + '<ul>';
+            answer = answer + '<li>' + arr[i].id + '</li>';
+            answer = answer + '<li>' + arr[i].comment + '</li>';
+            answer = answer + '<li>' + arr[i].writer + '</li>';
+            answer = answer + '<li>' + new Date(arr[i].created_at).toLocaleDateString() + '</li>';
+            answer = answer + '</ul>';
+
+        }
+        $datas.innerHTML = answer;
+    });
+    $update.addEventListener('click', function (){
+        alert('수정하였습니다')
+    });
+    $delete.addEventListener('click', function (){
+        alert('삭제하였습니다');
+    });
+
+
+    async function insertData(dbCon) {
+        await dbCon.from('test').insert([{comment: '내가insert해야지', writer: '1234'}]);
+    }
+    async function selectData(dbCon) {
+        const res = await dbCon.from('test').select('*');
+        console.log(res);
+        return res.data;
+    }
+
+</script>
