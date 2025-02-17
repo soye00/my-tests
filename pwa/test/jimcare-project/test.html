@@ -7,42 +7,128 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .hidden{
+        display: none;
+        }
+    </style>
 </head>
 <body>
   <input type="text" name="" id="comment" placeholder="Enter Your Comment">
   <input type="text" name="" id="writer" placeholder="Enter Your Writer">
   <button id="insert"> insert 버튼</button>
   <button id="select"> select 버튼</button>
-  <div id="result"></div>
+  <div id="result" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1rem;">
+  <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:1rem;
+        background-color: lightgrey;
+        flex-direction: column;
+        margin-top: 1rem;"
+  >
+          <span>순번</span>
+          <span>코멘트</span>
+          <span>작성자</span>
+          <span>작성시간</span>
+  </div>
 
+  </div>
+  <div id="modal" class="hidden"
+       style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+           background-color: rgba(240,240,240,0.5);">
+      <div style="display: flex;
+                      flex-direction: column;
+                      width: 300px;
+                      height: 150px;
+                      background-color: white;
+                      margin: 100px auto;
+                      padding: 20px;">
+          <span id="update-id">순번</span>
+          <span>코멘트<input type="text" name="" id="update-comment" placeholder="코멘트를 입력하세요"></span>
+          <span>작성자<input type="text" name="" id="update-writer" placeholder="작성자를 입력하세요"></span>
+          <span id="update-date">작성시간 2025.02.17</span>
+          <div>
+              <button>수정</button>
+              <button onclick="updatClose();">닫기</button>
+          </div>
+      </div>
+  </div>
 </body>
 </html>
 <script>
-  const $writer = document.querySelector('#writer');
-  const $comment = document.querySelector('#comment')
-  const $insert = document.querySelector('#insert');
-  const $select = document.querySelector('#select');
-  const $result = document.querySelector('#result');
+    var dbUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
+    var dbPassword = "비ㅣㅣㅣㅣㅣ미리ㅣㅣㅣㅣㅣ버너ㅓㅓㅓㅓㅓㅓ호";
 
-  var dbUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
-  var dbPassword = "패스워드 지우기ㅣ기기기ㅣ기긱기기ㅣ기긱기기기ㅣ긱기기ㅣㄱ기기";
+    const supabase = window.supabase.createClient(dbUrl, dbPassword);
 
-  const supabase = window.supabase.createClient(dbUrl, dbPassword);
+    const $writer = document.querySelector('#writer');
+    const $comment = document.querySelector('#comment')
+    const $insert = document.querySelector('#insert');
+    const $select = document.querySelector('#select');
+    const $result = document.querySelector('#result');
 
+    const $updateId = document.querySelector('#update-id');
+    const $updateComment = document.querySelector('#update-comment');
+    const $updateWriter = document.querySelector('#update-writer');
+    const $updateDate = document.querySelector('#update-date');
+
+    const $modal = document.querySelector('#modal');
+
+  function update(id,comment,writer,created_at) {
+      $modal.classList.remove('hidden');
+
+      $updateId.innerText =`순번 ${id}`;
+      $updateComment.value = comment;
+      $updateWriter.value = writer;
+      $updateDate.innerHTML = `날짜 ${created_at}`;
+
+  }
+  function updateClose(){
+      $modal.classList.add('hidden');
+  }
+
+  //삭제하는 함수
+  async function deleteData(num){
+      await supabase.from('test').delete().eq('id',num);
+      selectData();
+  }
+
+  //저장하는 함수
   async function insertData(comment, writer) {
     const response = await supabase.from('test').insert([{ comment, writer }]);
     console.log(response);
+    selectData();
   }
+
+  //조회하는 함수
   async function selectData(){
-    const response = await supabase.from('test').select();
+    const response = await supabase.from('test').select('*').order('created_at',{ascending:false});
     let result = '';
     for(let i = 0; i < response.data.length; i++){
-      console.log(response.data[i]);
-      result += ` <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 10rem;">
+      // console.log(response.data[i]);
+      result += ` <div style="
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding:1rem;
+        background-color: lightgrey;
+        margin-top: 1rem;">
                          <span>순번 ${response.data[i].id}</span>
                          <span>코멘트 ${response.data[i].comment}</span>
                          <span>작성자 ${response.data[i].writer}</span>
-                         <span>작성시간 ${response.data[i].created_at}</span></div>`;}
+                         <span>작성시간 ${new Date(response.data[i].created_at).toLocaleDateString()}</span>
+                         <div>
+                         <button onclick="deleteData(${response.data[i].id})">삭제</button>
+                         <button onclick="update(${response.data[i].id},
+                         '${response.data[i].comment}',
+                         '${response.data[i].writer}',
+                         '${new Date(response.data[i].created_at).toLocaleDateString()}'
+                         )">수정</button>
+                         </div>
+                         </div>`;}
     $result.innerHTML = result;
   }
 
@@ -58,6 +144,9 @@
       return;
     } else{
       insertData($comment.value, $writer.value);
+      selectData();
+        $comment.value = "";
+        $writer.value = "";
     }
     console.log($comment.value, $writer.value);
   });
