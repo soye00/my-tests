@@ -50,8 +50,8 @@
           <span>작성자<input type="text" name="" id="update-writer" placeholder="작성자를 입력하세요"></span>
           <span id="update-date">작성시간 2025.02.17</span>
           <div>
-              <button>수정</button>
-              <button onclick="updatClose();">닫기</button>
+              <button onclick="updateModalOpen()">수정</button>
+              <button onclick="updateModalClose();">닫기</button>
           </div>
       </div>
   </div>
@@ -59,7 +59,7 @@
 </html>
 <script>
     var dbUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
-    var dbPassword = "비ㅣㅣㅣㅣㅣ미리ㅣㅣㅣㅣㅣ버너ㅓㅓㅓㅓㅓㅓ호";
+    var dbPassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZubGt4ZmZwcXJmZnJsb3ZubXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjQ5NzYsImV4cCI6MjA1NTAwMDk3Nn0.1Ova5eln8PKRQJaXi9kqUQdTzWzq5cpKRkxd9bykvsw";
 
     const supabase = window.supabase.createClient(dbUrl, dbPassword);
 
@@ -76,7 +76,7 @@
 
     const $modal = document.querySelector('#modal');
 
-  function update(id,comment,writer,created_at) {
+  function updateModalOpen(id,comment,writer,created_at) {
       $modal.classList.remove('hidden');
 
       $updateId.innerText =`순번 ${id}`;
@@ -85,7 +85,7 @@
       $updateDate.innerHTML = `날짜 ${created_at}`;
 
   }
-  function updateClose(){
+  function updateModalClose(){
       $modal.classList.add('hidden');
   }
 
@@ -122,7 +122,7 @@
                          <span>작성시간 ${new Date(response.data[i].created_at).toLocaleDateString()}</span>
                          <div>
                          <button onclick="deleteData(${response.data[i].id})">삭제</button>
-                         <button onclick="update(${response.data[i].id},
+                         <button onclick="updateModalOpen(${response.data[i].id},
                          '${response.data[i].comment}',
                          '${response.data[i].writer}',
                          '${new Date(response.data[i].created_at).toLocaleDateString()}'
@@ -153,6 +153,18 @@
   $select.addEventListener('click', function() {
     selectData();
   });
+
+  // 수정버튼 눌렀을때
+    $update.addEventListener('click', async function() {
+        const data = {
+            comment: $updateComment.value,
+            writer: $updateWriter.value,
+        };
+        const id = $updateId.innerText.split(' ');
+        await supabase.from('test').update(data).eq('id',id[1]);
+        selectData();
+        updateModalClose();
+    });
 
 
 </script>
