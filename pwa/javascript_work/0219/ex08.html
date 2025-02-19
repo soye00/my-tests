@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container{
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+      }
+      .box{
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      .box:nth-child(1){background-color: palevioletred;}
+      .box:nth-child(2){background-color: darkorange;}
+      .box:nth-child(3){background-color: darkkhaki;}
+      .box:nth-child(4){background-color: darkolivegreen;}
+      .box:nth-child(5){background-color: darkcyan;}
+      .arrow-left{position: absolute; top: 40px;}
+      .arrow-right{position: absolute; top: 40px; left: 80px}
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="box">
+
+    </div>
+    <div class="box">
+
+    </div>
+    <div class="box">
+
+    </div>
+    <div class="box">
+
+    </div>
+    <div class="box">
+
+    </div>
+
+</div>
+<button class="arrow-left" onclick="left();">◀</button>
+<button onclick="stop();">멈춰</button>
+<button class="arrow-right" onclick="right();">▶</button>
+</body>
+</html>
+<script>
+    const $divArr = document.querySelectorAll('.box');
+    var n = 0;
+    var i = 0;
+
+    // var의 기능 : 재할당, 재선언 가능
+    // let의 기능 : 재할당 가능
+    // const의 기능 : 절대값
+    // let a = 1; a=2; a=3; 재선언x let a
+    // var a = 1; 재선언 o var a = 0;
+    //const a = 2; x a=1;
+    // +@ var의 경우 호이스팅이 일어난다.
+    // 선언 시 javascript가 실행될때 전역변수로써 선언이 일어난다.
+    // var a;
+    //전역변수 : 어디에서든 사용 가능
+    //지역변수 : 선언 된 중괄호내에서 사용 가능
+
+
+
+    const interval = setInterval(() => {
+      n++;
+      for ( var j = 0; j < $divArr.length; j++ ) {
+        $divArr[j].style.marginLeft = '0px';
+      }
+      for (i = 0; i < n%5; i++ ) {
+        $divArr[i].style.marginLeft = '-100px';
+      }
+    },1000);
+    function left() {
+      clearInterval(interval);
+      console.log(i--);
+      if(i < 0) i = 4;
+      for (j = 0; j < $divArr.length; j++ ) {
+        $divArr[j].style.marginLeft = '0px';
+      }
+      for ( var j = 0; j < i; j++ ) {
+        $divArr[j].style.marginLeft = '-100px';
+      }
+    }
+    function right() {
+      clearInterval(interval);
+      console.log(i++);
+      if(i > 4) i = 0;
+      for ( var j = 0; j < $divArr.length; j++ ) {
+        $divArr[j].style.marginLeft = '0px';
+      }
+      for ( var j = 0; j < i; j++ ) {
+        $divArr[j].style.marginLeft = '-100px';
+      }
+    }
+
+    function stop() {
+      clearInterval(interval);
+    }
+
+
+</script>
