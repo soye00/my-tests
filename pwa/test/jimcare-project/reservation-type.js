@@ -12,6 +12,28 @@ const $step02 = document.querySelector('#step02');
 const dbConnect = supabase.createClient('https://fnlkxffpqrffrlovnmys.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZubGt4ZmZwcXJmZnJsb3ZubXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjQ5NzYsImV4cCI6MjA1NTAwMDk3Nn0.1Ova5eln8PKRQJaXi9kqUQdTzWzq5cpKRkxd9bykvsw');
 
+const $jimStartHour = document.querySelector('#jim-start-hour');
+const $jimStartMin = document.querySelector('#jim-start-min');
+const $jimEndHour = document.querySelector('#jim-end-hour');
+const $jimEndMin = document.querySelector('#jim-end-min');
+
+const $keepBag1 = document.querySelector('#keep-bag1');
+const $keepBag2 = document.querySelector('#keep-bag2');
+const $keepBag3 = document.querySelector('#keep-bag3');
+
+
+const $nameInput = document.querySelector('#name');
+const $phoneInput = document.querySelector('#phone');
+const $typeInput = document.querySelector('#type');
+const $useDateInput = document.querySelector('#use-date');
+const $commentInput = document.querySelector('#comment');
+const $agreeInput = document.querySelector('#agree');
+
+const $nameOutput = document.querySelector('#r-name');
+const $phoneOutput = document.querySelector('#r-phone');
+const $dateOutput = document.querySelector('#r-date');
+const $commentOutput = document.querySelector('#r-comment');
+
 $select.addEventListener('change', function (e) {
     if(e.target.value === 'jim-keep'){
         $etc1.classList.remove('hidden');
@@ -37,6 +59,27 @@ $select.addEventListener('change', function (e) {
 });
 
 $confirmReserve.addEventListener('click', function (e) {
+
+    if(!($agreeInput.checked)){
+        alert('개인정보 취급 방침에 동의하셔야 합니다.')
+        return;
+    }
+    if($nameInput.value === ''){
+        alert('예약자 이름을 입력하세요')
+        $nameInput.focus();
+        return;
+    }
+    if($phoneInput.value === ''){
+        alert('예약자 휴대전화 번호를 입력하세요')
+        $phoneInput.focus();
+        return;
+    }
+
+    $nameOutput.innerHTML = $nameInput.value;
+    $phoneOutput.innerHTML = $phoneInput.value;
+    $dateOutput.innerHTML = $useDateInput.value;
+    $commentOutput.innerHTML = $commentInput.value;
+
     $step01.classList.add('hidden');
     $step02.classList.remove('hidden');
 });
@@ -48,23 +91,30 @@ $cancelReserve.addEventListener('click', function (e) {
 
 
 $submitReserve.addEventListener('click', async function (e) {
-    await dbConnect.from('reservation').insert([
+    console.log($jimStartHour.value);
+    const res = await dbConnect.from('reservation').insert([
         {
-            id: 1,  // 실제 고객 ID로 변경
-            use_date: '2025-02-07', // 예약 날짜 (YYYY-MM-DD)
-            departure_time: '10:00:00', // 출발 시간 (HH:MM:SS)
-            departure_location: 'Seoul Station', // 출발 장소
-            arrival_time: '12:00:00', // 도착 시간 (HH:MM:SS)
-            arrival_location: 'Busan Station', // 도착 장소
-            shopping_bag_count: 2, // 쇼핑백 개수
-            carrier_small_count: 1, // 작은 캐리어 개수
-            carrier_large_count: 0, // 큰 캐리어 개수
-            other_items: 'Umbrella, Backpack', // 기타 물품
-            inquiries: 'Handle with care', // 문의 사항
-            status: 'pending', // 예약 상태
-            total_price: 50000, // 총 가격
-            payment_status: 'pending', // 결제 상태
+
+            name : $nameOutput.value,
+            phone : $phoneOutput.value,
+            use_date_keep : $dateOutput.innerHTML,
+            use_start_date : null,
+            use_end_date : null,
+            use_start_time : '09:00:00',
+            use_end_time : '21:00:00',
+            use_start_location : null,
+            use_end_location : null,
+            use_keep_location : '서울',
+            shopping_bag_count : $keepBag1.value,
+            carrier_small_count : $keepBag2.value,
+            carrier_large_count : $keepBag3.value,
+            inquiries : $commentOutput.innerHTML,
+            type : 'keep',
+            status : 'pending',
+            total_price : 123123,
+            payment_status : 'pending'
         }
-    ])
+    ]);
+    alert('예약되었습니다' + res);
 })
 

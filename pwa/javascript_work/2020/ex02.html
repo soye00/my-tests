@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      @keyframes slide-in {
+        from {
+          transform: translateY(0%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(-100%);
+          opacity: 1;
+        }
+      }
+      h1{
+        animation: slide-in 2s ease-in-out infinite;
+        /*text-shadow: 2px 2px 4px #000;*/
+        box-shadow: 2px 2px 4px #000;
+      }
+    </style>
+
+</head>
+<body>
+  <div style="height: 100vh; justify-content: center; align-items: center; display: flex;">
+    <h1>HELLO!</h1>
+  </div>
+</body>
+</html>

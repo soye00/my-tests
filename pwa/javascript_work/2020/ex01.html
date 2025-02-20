@@ -1,0 +1,29 @@
+<!--setInterval(function(){},1000); 복습-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var w = 100;
+        var y = 100;
+        window.addEventListener('DOMContentLoaded',function(){
+
+            const $div = document.querySelector('div');
+            console.log($div);
+            setInterval(function() {
+                $div.style.width = w + 'px';
+                $div.style.height = y + 'px';
+                w = w + 10;
+                y = y + 10;
+            },1000);
+        });
+
+
+    </script>
+</head>
+<body>
+    <div style="width: 100px;height: 100px;background-color: red;"></div>
+</body>
+</html>
