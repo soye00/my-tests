@@ -39,3 +39,14 @@ console.log(solution(["n","omg"],["m","dog"]));
 //     const intersection = s1.filter((x) => s2.includes(x));
 //     return intersection.length;
 // }
+
+// var count = 0;
+// s1.forEach(element => {
+//     s2.forEach(s2_element => {
+//         if(element === s2_element) {
+//             count ++;
+//         }
+//     })
+// });
+//
+// return count;
