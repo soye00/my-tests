@@ -34,3 +34,7 @@ function solution(my_string) {
 }
 
 console.log(solution("nice to meet you"));
+//
+// function solution(my_string) {
+//     return [...my_string].filter(str => !['a', 'e', 'i', 'o', 'u'].includes(str)).join('');
+// }
