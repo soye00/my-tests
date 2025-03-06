@@ -56,9 +56,48 @@
 //     return answer;
 // }
 
+/*
+10만원 이상 5프로 할인 -> * 0.95
+30만원 이상 10프로 할인  -> * 0.9
+50만원 이상 20프로 할인 -> * 0.8
+
+ */
+
+// function solution(price) {
+//     var answer = 0;
+//     if(price >= 100000){
+//         answer = Math.floor(price * 0.95);
+//     }else if(price >= 300000){
+//         answer = Math.floor(price * 0.9);
+//     }else if(price >= 500000){
+//         answer = Math.floor(price * 0.8);
+//     }else {
+//         answer = Math.floor(price);
+//     }
+//     return answer;
+// }
+
+function solution(price) {
+    var answer = 0;
+    if(price >= 500000){
+        answer = Math.floor(price * 0.8);
+    }else if(price >= 300000){
+        answer = Math.floor(price * 0.9);
+    }else if(price >= 100000){
+        answer = Math.floor(price * 0.95);
+    }else {
+        answer = Math.floor(price);
+    }
+    return answer;
+}
+
 console.log(solution(150000));
 console.log(solution(580000));
 console.log(solution(3200));
 console.log(solution(325550));
 console.log(solution(100010));
 
+// function solution(price) {
+//
+//     return price >= 500000 ? Math.floor(price * 0.8) : price >= 300000 ? Math.floor(price * 0.9) : price >= 100000 ? Math.floor(price * 0.95) : price;
+// }

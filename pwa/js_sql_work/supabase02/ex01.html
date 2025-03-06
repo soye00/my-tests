@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZubGt4ZmZwcXJmZnJsb3ZubXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjQ5NzYsImV4cCI6MjA1NTAwMDk3Nn0.1Ova5eln8PKRQJaXi9kqUQdTzWzq5cpKRkxd9bykvsw";
+
+        const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+
+    </script>
+    <style>
+        table {
+            width: 100%;
+        }
+        table, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--
+1. onclick
+2. id 부여한 다음 querySelector -> addEventListener('click, function(){}
+-->
+    <button onclick="usersSelect();">USERS조회</button>
+    <button>ORDERS조회</button>
+    <h1>유저</h1>
+    <div id="users-div"></div>
+    <h1>주문</h1>
+    <div id="orders-div"></div>
+    <div>
+        이름<input type="text" name="" id="name"/><br/>
+        이메일<input type="text" name="" id="email"/>
+        <button>ORDERS입력</button>
+    </div>
+    <div>
+        상품명<input type="text" name="" id="product_name"/><br/>
+        상품가격<input type="text" name="" id="price"/>
+        <button>ORDERS입력</button>
+    </div>
+
+</body>
+</html>
+<script>
+    const $usersDiv = document.querySelector('#users-div');
+
+    //유저테이블 내용 가져와서 출력하는 함수
+    async function usersSelect(){
+        const res = await supabase.from('users').select()
+        let rows = '' ;
+        for(let i =0; i<res.data.length; i++){
+            rows = rows + `<tr>
+                      <td>${res.data[i].id}</td>
+                      <td>${res.data[i].name}</td>
+                      <td>${res.data[i].email}</td>
+                      <td>${res.data[i].created_at}</td>
+                      <td>${res.data[i].active}</td>
+                    </tr>
+                    `;
+        }
+
+        let users = `
+        <div>
+            <table>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>가입날짜</th>
+                  <th>활성화</th>
+                </tr>
+            ${rows}
+          </table>
+        </div>
+        `;
+        $usersDiv.innerHTML = users;
+            }
+</script>
