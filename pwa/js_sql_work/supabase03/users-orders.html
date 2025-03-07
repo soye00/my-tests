@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const supabaseUrl = "https://fnlkxffpqrffrlovnmys.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZubGt4ZmZwcXJmZnJsb3ZubXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjQ5NzYsImV4cCI6MjA1NTAwMDk3Nn0.1Ova5eln8PKRQJaXi9kqUQdTzWzq5cpKRkxd9bykvsw";
+
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+    <style>
+        h1:hover {
+             cursor: pointer;
+            text-decoration: underline;
+        }
+        .content{
+            height: 0;
+            overflow: hidden;
+        }
+        .show{
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+<!--
+    1. onclick =
+    2. id 부여한다음에 queryselect -> addEventListener('click', function(){} )
+-->
+<button onclick="usersSelect();">USERS조회</button>
+<button onclick="ordersSelect()">ORDERS조회</button>
+<h1 onclick="userToggle()">유저</h1>
+<div id="users-div" class="content"></div>
+<h1 onclick="ordersToggle()">주문</h1>
+<div id="orders-div" class="content"></div>
+<div>
+    이름<input type="text" id="name"/><br/>
+    이메일<input type="email" id="email"/>
+    <button id="input-button-user">USERS입력</button>
+</div>
+<div>
+    상품명<input type="text" id="product_name"/><br/>
+    상품가격<input type="text" id="price"/>
+    <button id="input-button-order">ORDERS입력</button>
+</div>
+</body>
+
+</html>
+<style>
+    table {
+        width: 100%;
+    }
+
+    table, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+</style>
+<script>
+    function userToggle() {
+        document.querySelector('#users-div').classList.toggle('show');
+    }
+    function ordersToggle() {
+        document.querySelector('#orders-div').classList.toggle('show');
+    }
+</script>
+<script src="users.js"></script>
+<script src="orders.js"></script>
