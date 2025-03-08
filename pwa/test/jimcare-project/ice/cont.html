@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>예약 페이지</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- 한국어 로케일 파일 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/ko.js"></script>
+    <link rel="stylesheet" href="cont.css">
+</head>
+<body>
+<div class="reservation-container">
+    <!-- 예약 날짜 선택 -->
+    <div>
+        <label for="reservation-date">예약 날짜를 선택하세요:</label>
+        <input type="text" id="reservation-date" name="reservation-date">
+    </div>
+
+
+    <!-- 예약 시간 선택 -->
+    <div class="reservation-time" style="display: none;">
+        <label for="reservation-time">예약 시간을 선택하세요</label>
+        <div>
+            <input type="radio" id="time-9" name="reservation-time" value="09:00">
+            <label for="time-9">09:00</label>
+        </div>
+        <div>
+            <input type="radio" id="time-12" name="reservation-time" value="12:00">
+            <label for="time-12">12:00</label>
+        </div>
+        <div>
+            <input type="radio" id="time-15" name="reservation-time" value="15:00">
+            <label for="time-15">15:00</label>
+        </div>
+        <div>
+            <input type="radio" id="time-18" name="reservation-time" value="18:00">
+            <label for="time-18">18:00</label>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 예약 날짜 선택 시 예약 시간 선택 영역 보여주기
+    document.getElementById('reservation-date').addEventListener('change', function() {
+        const reservationTime = document.querySelector('.reservation-time');
+        if (this.value) {
+            reservationTime.style.display = 'block'; // 날짜 선택되면 시간 선택 영역 보이기
+        } else {
+            reservationTime.style.display = 'none'; // 날짜가 없으면 시간 선택 영역 숨기기
+        }
+    });
+</script>
+<!-- Flatpickr JS 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#reservation-date", {
+        locale: "ko",  // 한국어로 설정
+        dateFormat: "Y-m-d",  // 날짜 포맷 설정
+        minDate: "today",  // 오늘 이후 날짜만 선택 가능
+        maxDate: new Date().fp_incr(90),  // 오늘 포함 3달 이후 날짜까지만 선택 가능
+        inline: true,  // 달력을 항상 화면에 표시
+        closeOnSelect: false,  // 날짜 선택 후에도 달력이 사라지지 않도록 설정
+        onChange: function(selectedDates, dateStr, instance) {
+            console.log("선택한 날짜: " + dateStr);  // 선택한 날짜 출력
+        }
+    });
+</script>
+</body>
+</html>

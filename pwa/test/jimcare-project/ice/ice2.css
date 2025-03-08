@@ -1,0 +1,95 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; /* 네비게이션 바 높이를 고려한 여백 추가 */
+    transition: background-color 0.3s ease; /* 배경 어두워짐 효과 */
+}
+
+/* 네비게이션 바 스타일 */
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+}
+
+/* 햄버거 버튼 */
+.hamburger {
+    color: #006B99;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+/* 모달 네비게이션 메뉴 */
+.nav-links {
+    position: fixed;
+    top: 0px;
+    right: -300px; /* 메뉴를 오른쪽으로 숨김 */
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 1s ease;
+    z-index: 1500;
+}
+
+.nav-links.active {
+    right: 0; /* 메뉴가 오른쪽에서 왼쪽으로 슬라이딩 */
+}
+
+.nav-links ul {
+    list-style: none;
+    padding: 20px;
+    position: absolute;
+    top: 40px;
+    right: 180px;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+/* 호버 효과 */
+.nav-links a:hover {
+    color: #006B99; /* 호버 시 텍스트 색상 변경 */
+    transform: translateX(3px); /* 오른쪽으로 살짝 이동 */
+}
+/* 닫기 버튼 */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #006B99;
+    cursor: pointer;
+}
+
+/* 배경 어두워지기 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+    display: none;
+    z-index: 1000;
+}
+
+.overlay.active {
+    display: block; /* 메뉴가 활성화되면 배경 어두워짐 */
+}

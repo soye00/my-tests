@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>웹사이트</title>
+  <!-- FontAwesome 아이콘 CDN 추가 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="ice.css">
+</head>
+<body>
+<nav>
+  <!-- 로고 -->
+  <a href="#" class="logo">
+    <img src="" alt="로고 이미지">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">예약하기</a></li>
+    <li><a href="#">예약조회</a></li>
+    <li><a href="#">빠른 상담</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i> <!-- 햄버거 아이콘 -->
+  </div>
+</nav>
+
+
+<!-- 자바스크립트: 햄버거 메뉴 toggle 기능 -->
+<script>
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+</script>
+</body>
+</html>
