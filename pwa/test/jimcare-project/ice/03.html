@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>웹사이트</title>
+  <link rel="stylesheet" href="03.css">
+</head>
+<body>
+
+<!-- 네비게이션 바 -->
+<header>
+  <nav class="navbar">
+    <!-- 로고 -->
+    <a href="#" class="logo">
+      <img src="logo.png" alt="로고" />
+    </a>
+
+    <!-- 네비게이션 메뉴 -->
+    <ul class="nav-links">
+      <li><a href="#">예약하기</a></li>
+      <li><a href="#">예약조회</a></li>
+      <li><a href="#">빠른 상담</a></li>
+    </ul>
+
+    <!-- 햄버거 아이콘 -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+</header>
+
+<!-- 슬라이드 메뉴 -->
+<div class="overlay" onclick="toggleMenu()"></div>
+<div class="side-menu">
+  <div class="close-btn" onclick="toggleMenu()">
+    <i class="fas fa-times"></i> <!-- 닫기 아이콘 -->
+  </div>
+  <ul>
+    <li><a href="#">예약하기</a></li>
+    <li><a href="#">예약조회</a></li>
+    <li><a href="#">빠른 상담</a></li>
+  </ul>
+</div>
+
+<!-- FontAwesome 아이콘 CDN -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+  function toggleMenu() {
+    const sideMenu = document.querySelector('.side-menu');
+    const overlay = document.querySelector('.overlay');
+
+    sideMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+  }
+</script>
+</body>
+</html>

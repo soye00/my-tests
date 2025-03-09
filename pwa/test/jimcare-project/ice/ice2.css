@@ -93,3 +93,51 @@ nav {
 .overlay.active {
     display: block; /* 메뉴가 활성화되면 배경 어두워짐 */
 }
+@media (min-width: 769px) {
+    /* 큰 화면에서는 햄버거 버튼을 숨김 */
+    .hamburger {
+        display: none;
+    }
+    .close-btn {
+        display: none;
+    }
+
+    .nav-links ul{
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-links ul li {
+        margin: 0 20px;
+    }
+
+    .nav-links a {
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    /* 호버 효과 - 텍스트 색상 및 밑줄 애니메이션 */
+    .nav-links a:hover {
+        color: #006B99;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #006B99;
+        bottom: -5px;
+        left: 50%;
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+}
