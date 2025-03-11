@@ -88,7 +88,7 @@ document.querySelector('#update-button-order').addEventListener('click', async f
     const res = await supabase.from('orders').update({
         product_name: $updateProductName.value,
         price: $updatePrice.value
-    }).eq('id', $updateOrderId)
+    }).eq('id', $updateOrderId.innerHTML)
     .select();
 
     if(res.status === 200) {
