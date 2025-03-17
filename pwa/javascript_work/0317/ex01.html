@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+</ul>
+
+<script>
+  const li = document.querySelector('li');
+  const lis = document.querySelectorAll('li');
+
+  li.style.color = 'lightblue';
+  li.style.fontSize = '3rem';
+
+  lis[2].style.color = 'lightblue';
+
+  lis.forEach(li => {
+    li.style.fontSize = '2rem'
+    li.addEventListener('click', function (){
+      li.style.textDecoration = 'underline';
+    })
+  });
+
+  for(let i = 1; i < lis.length; i= i + 2) {
+    const element = lis[i];
+    element.style.color = 'darkred';
+  }
+
+
+
+
+
+  console.log(li);
+  console.log(lis);
+
+</script>
+</body>
+</html>
