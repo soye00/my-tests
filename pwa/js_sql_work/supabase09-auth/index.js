@@ -52,13 +52,33 @@ document.getElementById('logout').addEventListener('click', async () => {
 
 });
 
+document.getElementById('kakao-login').addEventListener('click', async () => {
+    const res = await supabase.auth.signInWithOAuth({
+        provider : 'kakao'
+    })
+    console.log(res);
+});
+
+
+
+
 document.addEventListener('DOMContentLoaded',async function (){
     const res = await supabase.auth.getUser();
     console.log(res);
 
     const $loginStatus = document.getElementById('login-status');
-    $loginStatus.innerHTML = `안녕하세요 ${res.data.user.email}님!`;
-})
+    $loginStatus.innerHTML = `로그인 ${res.data.user.email}`;
+});
+
+document.getElementById('logout').addEventListener('click', async () => {
+    const res = await supabase.auth.signout();
+    const $logoutStatus = document.getElementById('logout-status');
+    $logoutStatus.innerHTML = '로그아웃';
+});
+
+
+
+
 
 /*
 signUp : 이메일&패스워드 슈퍼베이스로 던짐
