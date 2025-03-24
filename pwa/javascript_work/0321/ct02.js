@@ -23,6 +23,21 @@ console.log(result); // "*****6789"
 // console.log(res);
 
 
+const brr = new Array(5).fill("0");
+
+console.log(brr); // [ '0', '0', '0', '0', '0' ]
+
+
+const crr = [1,2,3,4,5,6,7,8,9];
+const c = crr.slice(5); // 인덱스 5이상
+console.log(c); // 6789
+const d = crr.slice(1,3); // 인덱스 1 ~ 3미만까지
+console.log(d); // 23
+const e = crr.slice(-3); // -3이상 => 인덱스 -3,-2,-1
+console.log(e); //789
+
+
+
 
 
 function solution(phone_number) {
