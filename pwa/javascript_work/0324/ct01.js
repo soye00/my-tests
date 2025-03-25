@@ -28,7 +28,8 @@ ex)
 40/4
 
 원래 병 수에서
-더하고 빼고
+더하고
+빼고
 
 
 
@@ -37,16 +38,27 @@ ex)
  */
 
 
-function solution(a, b, n) {
+/*
+a 개 가져다주면 b 개 받을 수 있음
+총 n개 병을 가지고 있으면 받을 수 있는 총 병의 개수를 리턴
 
+20 => 10
+10 => 5
+5 => 2 +1
+3 => 1 +1
+1+1 => 1
+10+5+3+1
+ */
 
+function solution(a, b, n){
+    let sum = 0;
+    while(true){
+        sum += Math.floor(n / a) * b ;
+        n = Math.floor(n /a)*b + n % a ;
+        if(n < a)
+            break;
     }
-
-
-
-
-
-    // return answer;
+    return sum;
 }
-
 console.log(solution(2,1,20));
+console.log(solution(3,2,40));
