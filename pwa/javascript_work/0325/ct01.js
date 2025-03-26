@@ -34,16 +34,24 @@ nums 에 있는 숫자들 중 서로 다른 3개를 골라 더했을 때
 
 
 function solution(nums) {
-    let num = [];
+    myset = new Set();
     for(let i = 0; i < nums.length; i++){
         for(let j = 0; j < nums.length; j++){
             for(let k = 0; k < nums.length; k++){
-                let sum = nums[i]+nums[j]+nums[k];
-                if(sum)
+                if(i != j && j != k && k != i){
+                    const sum = nums[i] + nums[j] + nums[k];
+                    // console.log(`Sum: ${sum}`);
+                    if(prime(sum))
+                        myset.add(sum)
+                }
             }
         }
     }
 
 
     return answer;
+}
+
+function prime(item){
+    const primes = []
 }
