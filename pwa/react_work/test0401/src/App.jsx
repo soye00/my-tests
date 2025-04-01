@@ -17,7 +17,12 @@ function App() {
   //   const res = supabase.from('ice_res').select();
   //   console.log(res);
   // }, []);
-  
+  const calcuAge = () => {
+    const Year = parseInt(birthYear);
+    const Ages = (2025 - Year) - 1 ;
+    setAge(Ages);
+    
+  };
   
 
   
@@ -29,8 +34,9 @@ function App() {
       <button onClick={() => setCount((count) => count * 0)}>리셋</button>
       <button onClick={() => setCount((count) => count - 1)}>-</button>
       <p>2025년 기준 현재 나이는 {age}입니다.</p>
-      <input type="text" value={birthYear} name="" id="" onChange={} />
-      <button onClick={}>나이계산하기</button>
+      <input type="text" value={birthYear} name="" id="" placeholder="ex)2000"
+        onChange={(e)=> setBirthYear(e.target.value)} />
+      <button onClick={calcuAge}>나이계산하기</button>
     </>
   );
 }
