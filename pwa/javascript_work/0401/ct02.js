@@ -33,6 +33,27 @@ console.log(solution("205"));
 console.log(solution("2021"));
 
 
+
+
+
+// function solution(rsp) {
+//     let arr = {
+//         2: 0,
+//         0: 5,
+//         5: 2
+//     };
+//     var answer = [...rsp].map(v => arr[v]).join("");
+//     return answer;
+// }
+
+
+
+
+
+
+
+
+
 // let arr = "123";
 // let b = arr.split('').map((item) => {
 //     if(item==1)return 4;
