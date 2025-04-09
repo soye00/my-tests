@@ -1,0 +1,10 @@
+.button{
+    background-color: aquamarine;
+    color: bisque;
+    padding: 10px;
+    border : none;
+    cursor: pointer;
+}
+.title{
+    font-size : 3rem;
+}
