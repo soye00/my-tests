@@ -8,7 +8,6 @@ import { supabase } from '../services/supabase';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
-dayjs.locale('ko');
 
 const { Content } = Layout;
 
