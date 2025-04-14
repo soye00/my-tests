@@ -1,0 +1,9 @@
+.content{
+    padding : 1rem;
+}
+.col{
+    background-color: cornflowerblue;
+    padding : 1rem;
+    border-radius: 15px;
+    margin : 1rem;
+}

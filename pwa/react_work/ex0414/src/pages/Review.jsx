@@ -1,0 +1,33 @@
+import React from 'react';
+import {Card, Col, Layout, Row} from "antd";
+import styles from "./Review.module.css";
+const {Content} = Layout;
+
+
+
+function Review(props) {
+    return (
+        <div>
+            <Content>
+                <h1>Review</h1>
+                <Row>
+                    <Col className={styles.col}
+                         xs={24} sm={12} md={8}>
+                        Test
+                    </Col>
+                    <Col className={styles.col}
+                         xs={24} sm={12} md={8}>
+                        Test
+                    </Col>
+                    <Col className={styles.col}
+                         xs={24} sm={12} md={8}>
+                        Test
+                    </Col>
+                </Row>
+
+            </Content>
+        </div>
+    );
+}
+
+export default Review;
