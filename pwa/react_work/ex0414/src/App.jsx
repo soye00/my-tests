@@ -10,9 +10,11 @@ import {
   FundOutlined
 } from '@ant-design/icons';
 import {Link, Route, Routes} from "react-router-dom";
-import Root from "./pages/Root.jsx";
-import Review from "./pages/Review.jsx";
-import Todo from "./pages/Todo.jsx";
+import RootPage from "./pages/RootPage.jsx";
+import ReviewPage from "./pages/ReviewPage.jsx";
+import TodoPage from "./pages/TodoPage.jsx";
+import UserAddPage from "./pages/user/UserAddPage.jsx";
+import UserListPage from "./pages/user/UserListPage.jsx";
 
 
 
@@ -43,8 +45,8 @@ const items = [
     icon: <UserOutlined />,
     label: '사용자 관리',
     children: [
-      { key: 'users-list', label: '사용자 목록' },
-      { key: 'users-add', label: '사용자 추가' },
+      { key: 'users-list', label: <Link to={'/user/list'}>사용자목록</Link>},
+        { key: 'users-add', label: <Link to={'/user/add'}>사용자추가</Link>},
       { key: 'users-delete', label: '사용자 삭제' },
     ],
   },
@@ -104,9 +106,11 @@ const AppLayout = () => {
 
           {/* 본문 콘텐츠 */}
           <Routes>
-              <Route path="/" element={<Root/>}></Route>
-              <Route path="/todo" element={<Todo/>}></Route>
-              <Route path="/review" element={<Review/>}></Route>
+              <Route path="/" element={<RootPage/>}></Route>
+              <Route path="/todo" element={<TodoPage/>}></Route>
+              <Route path="/review" element={<ReviewPage/>}></Route>
+              <Route path="/user/add" element={<UserAddPage/>}></Route>
+              <Route path="/user/list" element={<UserListPage/>}></Route>
           </Routes>
 
 

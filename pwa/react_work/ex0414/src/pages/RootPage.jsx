@@ -1,15 +1,14 @@
 import React from 'react';
 import {Card, Col, Layout, Row} from "antd";
-import styles from "./Todo.module.css";
+import styles from './RootPage.module.css'
+
+
 const {Content} = Layout;
 
-
-
-function Todo(props) {
+function RootPage(props) {
     return (
-        <div>
-            <Content>
-                <h1>todo</h1>
+        <>
+            <Content className={styles.content}>
                 <Row>
                     <Col className={styles.col}
                          xs={24} sm={12} md={8}>
@@ -25,8 +24,8 @@ function Todo(props) {
                     </Col>
                 </Row>
             </Content>
-        </div>
+        </>
     );
 }
 
-export default Todo;
+export default RootPage;

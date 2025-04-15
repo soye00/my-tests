@@ -1,0 +1,26 @@
+.centered-pagination {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.ant-pagination {
+    text-align: center !important;
+}
+
+.toptxt h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.r-date, .r-time, .r-info, .r-addr, .r-model, .r-capacity, .r-selectServ, .r-selectCyc, .r-selectAdd, .r-Special {
+    margin-bottom: 24px;
+}
+
+.r-time .ant-radio-group, .r-capacity .ant-radio-group, .r-selectServ .ant-radio-group, .r-selectCyc .ant-radio-group, .r-selectAdd .ant-radio-group {
+    width: 100%;
+}
+
+.r-info h1, .r-addr h1, .r-model h1, .r-capacity h1, .r-selectServ h1, .r-selectCyc h1, .r-selectAdd h1, .r-Special h1 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
