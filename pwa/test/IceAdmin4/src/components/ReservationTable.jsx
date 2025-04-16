@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { useMediaQuery } from 'react-responsive';
 import { supabase } from '../services/supabase';
-import './styles.css';
+import '../styles.css';
 
 const { Option } = Select;
 

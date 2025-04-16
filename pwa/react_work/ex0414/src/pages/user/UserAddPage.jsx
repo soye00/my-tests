@@ -55,7 +55,10 @@ function UserAddPage(props) {
                 <Col span={24}>
                     <Card hoverable style={{ padding: '1rem', margin: '1rem' }}>
                         <h1 style={{fontSize:'2rem'}}>사용자추가</h1>
-                        <Form layout="vertical" onFinish={onFinish}>
+                        <Form layout="vertical" onFinish={onFinish} initialValues={{
+                            name: '홍길동',
+                            
+                        }}>
                             {contextHolder}
                             <Form.Item label="이름" name="name" rules={[{ required: true, message: '이름을 입력해주세요' }]}>
                                 <Input />
@@ -69,7 +72,10 @@ function UserAddPage(props) {
                             <Form.Item label="전화번호" name="phone" rules={[{ required: true, message: '전화번호를 입력해주세요' }]}>
                                 <Input />
                             </Form.Item>
-                            <Form.Item label="비밀번호" name="password" rules={[{ required: true, message: '비밀번호를 입력해주세요' }]}>
+                            <Form.Item label="비밀번호" name="password" rules={[
+                                { required: true, message: '비밀번호를 입력해주세요' },
+                                {pattern: /\d{5,}/, message: '5글자 이상 입력하세요'}
+                            ]}>
                                 <Input.Password />
                             </Form.Item>
                             <Form.Item>
