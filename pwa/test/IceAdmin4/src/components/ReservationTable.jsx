@@ -4,18 +4,29 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { useMediaQuery } from 'react-responsive';
 import { supabase } from '../services/supabase';
-import '../styles.css';
+import './styles.css';
 
 const { Option } = Select;
 
-const ReservationTable = ({ reservations, onEdit, onDelete }) => {
+const ReservationTable = ({ reservations, onEdit, onDelete, onRefresh }) => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedReservation, setSelectedReservation] = useState(null);
 
     const handleFieldChange = async (res_no, field, value) => {
-        await supabase.from('ice_res').update({ [field]: value }).eq('res_no', res_no);
-        onEdit(null); // 새로고침 트리거
+        try {
+            const { error } = await supabase
+                .from('ice_res')
+                .update({ [field]: value })
+                .eq('res_no', res_no);
+            if (error) {
+                console.error('Error updating field:', error);
+                return;
+            }
+            onRefresh();
+        } catch (err) {
+            console.error('Unexpected error:', err);
+        }
     };
 
     const showDetails = (reservation) => {
@@ -64,7 +75,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             dataIndex: 'date',
             key: 'date',
             width: 120,
-            render: (text) => dayjs(text).format('YYYY-MM-DD'),
+            render: (text) => text ? dayjs(text).format('YYYY-MM-DD') : 'N/A',
             responsive: ['xs', 'sm', 'md', 'lg'],
         },
         {
@@ -74,7 +85,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 150,
             render: (text, record) => (
                 <Select
-                    value={text}
+                    value={text || '오전 10시 ~ 오후 1시'}
                     onChange={(value) => handleFieldChange(record.res_no, 'time', value)}
                     style={{ width: '100%' }}
                 >
@@ -100,7 +111,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 150,
             render: (text, record) => (
                 <Select
-                    value={text}
+                    value={text || '20~50kg'}
                     onChange={(value) => handleFieldChange(record.res_no, 'capacity', value)}
                     style={{ width: '100%' }}
                 >
@@ -118,7 +129,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 100,
             render: (text, record) => (
                 <Select
-                    value={text}
+                    value={text || '청소'}
                     onChange={(value) => handleFieldChange(record.res_no, 'service', value)}
                     style={{ width: '100%' }}
                 >
@@ -135,7 +146,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 150,
             render: (text, record) => (
                 <Select
-                    value={text}
+                    value={text || '이번 한 번만'}
                     onChange={(value) => handleFieldChange(record.res_no, 'cycle', value)}
                     style={{ width: '100%' }}
                 >
@@ -152,7 +163,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 200,
             render: (text, record) => (
                 <Select
-                    value={text}
+                    value={text || '선택 안함'}
                     onChange={(value) => handleFieldChange(record.res_no, 'add', value)}
                     style={{ width: '100%' }}
                 >
@@ -185,7 +196,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
             width: 120,
             render: (state, record) => (
                 <Select
-                    value={state}
+                    value={state || 1}
                     onChange={(value) => handleFieldChange(record.res_no, 'state', value)}
                     style={{ width: '100%' }}
                 >
@@ -256,7 +267,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
                             }
                         >
                             <p><strong>이름:</strong> {record.name}</p>
-                            <p><strong>예약 날짜:</strong> {dayjs(record.date).format('YYYY-MM-DD')}</p>
+                            <p><strong>예약 날짜:</strong> {record.date ? dayjs(record.date).format('YYYY-MM-DD') : 'N/A'}</p>
                             <p><strong>상태:</strong> {
                                 ({
                                     1: '예약대기',
@@ -283,7 +294,7 @@ const ReservationTable = ({ reservations, onEdit, onDelete }) => {
                             <p><strong>연락처:</strong> {selectedReservation.tel}</p>
                             <p><strong>이메일:</strong> {selectedReservation.email}</p>
                             <p><strong>주소:</strong> {selectedReservation.addr}</p>
-                            <p><strong>예약 날짜:</strong> {dayjs(selectedReservation.date).format('YYYY-MM-DD')}</p>
+                            <p><strong>예약 날짜:</strong> {selectedReservation.date ? dayjs(selectedReservation.date).format('YYYY-MM-DD') : 'N/A'}</p>
                             <p><strong>시간:</strong> {selectedReservation.time}</p>
                             <p><strong>모델:</strong> {selectedReservation.model}</p>
                             <p><strong>용량:</strong> {selectedReservation.capacity}</p>

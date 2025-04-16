@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Layout, Button, Modal, Tabs, Card, Flex } from 'antd';
-import ReservationTable from '../components/ReservationTable';
-import ReservationForm from '../components/ReservationForm';
-import MiniDashboard from '../components/MiniDashboard';
-import SearchFilters from '../components/SearchFilters';
+import ReservationTable from '../components/ReservationTable.jsx';
+import ReservationForm from '../components/ReservationForm.jsx';
+import MiniDashboard from '../components/MiniDashboard.jsx';
+import SearchFilters from '../components/SearchFilters.jsx';
 import { supabase } from '../services/supabase';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -14,7 +14,6 @@ const { Content } = Layout;
 
 const ReservationManage = () => {
     const [reservations, setReservations] = useState([]);
-    const [filteredReservations, setFilteredReservations] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingReservation, setEditingReservation] = useState(null);
     const [filterType, setFilterType] = useState('all');
@@ -31,7 +30,7 @@ const ReservationManage = () => {
     ]);
 
     const fetchReservations = async () => {
-        let query = supabase.from('ice_res').select('*').neq('state', 9); // 취소 상태 제외
+        let query = supabase.from('ice_res').select('*');
 
         if (filterType === 'cleaning') {
             query = query.eq('service', '청소');
@@ -55,45 +54,45 @@ const ReservationManage = () => {
             console.error('Error fetching reservations:', error);
             return;
         }
-        setReservations(data);
-        applyFilters(data);
+        // state 값을 숫자형으로 변환
+        const transformedData = data.map(item => ({
+            ...item,
+            state: Number(item.state),
+        }));
+        setReservations(transformedData);
     };
 
-    const applyFilters = (data) => {
-        let filtered = [...data];
+    const filteredReservations = useMemo(() => {
+        let filtered = [...reservations];
 
         if (filters.name) {
             filtered = filtered.filter((r) =>
-                r.name.toLowerCase().includes(filters.name.toLowerCase())
+                r.name && r.name.toLowerCase().includes(filters.name.toLowerCase())
             );
         }
         if (filters.tel) {
-            filtered = filtered.filter((r) => r.tel.includes(filters.tel));
+            filtered = filtered.filter((r) => r.tel && r.tel.includes(filters.tel));
         }
         if (filters.email) {
             filtered = filtered.filter((r) =>
-                r.email.toLowerCase().includes(filters.email.toLowerCase())
+                r.email && r.email.toLowerCase().includes(filters.email.toLowerCase())
             );
         }
         if (filters.addr) {
             filtered = filtered.filter((r) =>
-                r.addr.toLowerCase().includes(filters.addr.toLowerCase())
+                r.addr && r.addr.toLowerCase().includes(filters.addr.toLowerCase())
             );
         }
         if (filters.state !== null) {
             filtered = filtered.filter((r) => r.state === filters.state);
         }
 
-        setFilteredReservations(filtered);
-    };
+        return filtered;
+    }, [reservations, filters]);
 
     useEffect(() => {
         fetchReservations();
     }, [filterType, dateRange]);
-
-    useEffect(() => {
-        applyFilters(reservations);
-    }, [filters]);
 
     const showModal = (reservation = null) => {
         setEditingReservation(reservation);
@@ -131,7 +130,11 @@ const ReservationManage = () => {
                         setDateRange={setDateRange}
                     />
 
-                    <SearchFilters filters={filters} setFilters={setFilters} />
+                    <SearchFilters
+                        filters={filters}
+                        setFilters={setFilters}
+                        onSearch={() => {}}
+                    />
 
                     <Flex justify="end" style={{ marginBottom: 16 }}>
                         <Button
@@ -146,9 +149,10 @@ const ReservationManage = () => {
                         reservations={filteredReservations}
                         onEdit={showModal}
                         onDelete={async (res_no) => {
-                            await supabase.from('ice_res').update({ state: 9 }).eq('res_no', res_no); // 삭제 대신 상태를 9(취소)로 변경
+                            await supabase.from('ice_res').update({ state: 9 }).eq('res_no', res_no);
                             fetchReservations();
                         }}
+                        onRefresh={fetchReservations}
                     />
 
                     <Modal

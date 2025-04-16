@@ -1,93 +1,60 @@
 import React from 'react';
 import { Card, Statistic, DatePicker } from 'antd';
-import { Col, Row } from 'antd';
-import { CalendarOutlined, CheckCircleOutlined, ClockCircleOutlined, FileDoneOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
-import locale from "antd/es/date-picker/locale/ko_KR";
-dayjs.locale('ko');
 
 const { RangePicker } = DatePicker;
 
 const MiniDashboard = ({ reservations, dateRange, setDateRange }) => {
-    const stats = {
-        total: reservations.length,
-        pending: reservations.filter((r) => r.state === 0).length,
-        confirmed: reservations.filter((r) => r.state === 1).length,
-        completed: reservations.filter((r) => r.state === 4).length,
-    };
-
-    const handleDateChange = (dates) => {
-        if (dates && dates.length === 2 && dayjs.isDayjs(dates[0]) && dayjs.isDayjs(dates[1])) {
-            setDateRange([dates[0].startOf('day'), dates[1].endOf('day')]);
-        } else {
-            setDateRange([dayjs().subtract(1, 'month').startOf('day'), dayjs().endOf('day')]);
-        }
-    };
+    const totalReservations = reservations.length;
+    const cleaningReservations = reservations.filter(r => r.service === '청소').length;
+    const repairReservations = reservations.filter(r => r.service === '수리').length;
+    const canceledReservations = reservations.filter(r => r.state === 9).length;
 
     return (
-        <Card
-            style={{
-                marginBottom: 16,
-                boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                borderRadius: 8,
-            }}
-        >
-            <RangePicker
-                locale={locale}
-                value={dateRange}
-                onChange={handleDateChange}
-                format="YYYY-MM-DD"
-                style={{ marginBottom: 16 }}
-                allowClear={false}
-                disabledDate={(current) => {
-                    // 오늘 이후 날짜와 2025년 이후 비활성화
-                    return current && (current > dayjs().endOf('day') || current.year() > 2025);
-                }}
-            />
-            <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12} md={6}>
-                    <Card style={{ background: '#e6f7ff', borderRadius: 8 }}>
-                        <Statistic
-                            title="전체 예약"
-                            value={stats.total}
-                            prefix={<CalendarOutlined />}
-                            valueStyle={{ color: '#1890ff', fontSize: '24px', fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Card style={{ background: '#fff1f0', borderRadius: 8 }}>
-                        <Statistic
-                            title="예약 대기"
-                            value={stats.pending}
-                            prefix={<ClockCircleOutlined />}
-                            valueStyle={{ color: '#ff4d4f', fontSize: '24px', fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Card style={{ background: '#f0f5ff', borderRadius: 8 }}>
-                        <Statistic
-                            title="예약 완료"
-                            value={stats.confirmed}
-                            prefix={<FileDoneOutlined />}
-                            valueStyle={{ color: '#096dd9', fontSize: '24px', fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Card style={{ background: '#f6ffed', borderRadius: 8 }}>
-                        <Statistic
-                            title="청소 완료"
-                            value={stats.completed}
-                            prefix={<CheckCircleOutlined />}
-                            valueStyle={{ color: '#52c41a', fontSize: '24px', fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-        </Card>
+        <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16 }}>
+                <RangePicker
+                    value={dateRange}
+                    onChange={(dates) => setDateRange(dates || [dayjs().subtract(1, 'month'), dayjs()])}
+                    style={{ width: 300 }}
+                />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+                <Card style={{ flex: 1, backgroundColor: '#e6f7ff' }}>
+                    <Statistic
+                        title="총 예약"
+                        value={totalReservations}
+                        prefix={<EditOutlined />}
+                        valueStyle={{ color: '#1890ff' }}
+                    />
+                </Card>
+                <Card style={{ flex: 1, backgroundColor: '#f6ffed' }}>
+                    <Statistic
+                        title="청소 예약"
+                        value={cleaningReservations}
+                        prefix={<EditOutlined />}
+                        valueStyle={{ color: '#52c41a' }}
+                    />
+                </Card>
+                <Card style={{ flex: 1, backgroundColor: '#fff7e6' }}>
+                    <Statistic
+                        title="수리 예약"
+                        value={repairReservations}
+                        prefix={<EditOutlined />}
+                        valueStyle={{ color: '#fa8c16' }}
+                    />
+                </Card>
+                <Card style={{ flex: 1, backgroundColor: '#fff1f0' }}>
+                    <Statistic
+                        title="취소 예약"
+                        value={canceledReservations}
+                        prefix={<DeleteOutlined />}
+                        valueStyle={{ color: '#ff4d4f' }}
+                    />
+                </Card>
+            </div>
+        </div>
     );
 };
 

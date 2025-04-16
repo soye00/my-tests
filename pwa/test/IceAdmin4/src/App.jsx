@@ -1,17 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ReservationManage from './pages/ReservationManage';
-import 'antd/dist/reset.css';
+import ReservationManage from './pages/ReservationManage.jsx';
 
-
-const App = () => {
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
-        script.async = true;
-        document.head.appendChild(script);
-    }, []);
-
+function App() {
     return (
         <Router>
             <Routes>
@@ -19,6 +10,6 @@ const App = () => {
             </Routes>
         </Router>
     );
-};
+}
 
 export default App;

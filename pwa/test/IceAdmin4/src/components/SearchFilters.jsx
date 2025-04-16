@@ -4,7 +4,7 @@ import { Input, Select, Button, Flex } from 'antd';
 const { Option } = Select;
 
 const SearchFilters = ({ filters, setFilters, onSearch }) => {
-    const [tempFilters, setTempFilters] = useState(filters); // 임시 상태로 입력값 저장
+    const [tempFilters, setTempFilters] = useState(filters);
 
     const handleInputChange = (field, value) => {
         setTempFilters({
@@ -14,7 +14,24 @@ const SearchFilters = ({ filters, setFilters, onSearch }) => {
     };
 
     const handleSearch = () => {
-        setFilters(tempFilters); // 조회 버튼 클릭 시 필터 적용
+        setFilters({
+            ...tempFilters,
+            state: tempFilters.state !== undefined ? Number(tempFilters.state) : null,
+        });
+        onSearch();
+    };
+
+    const handleReset = () => {
+        const resetFilters = {
+            name: '',
+            tel: '',
+            email: '',
+            addr: '',
+            state: null,
+        };
+        setTempFilters(resetFilters);
+        setFilters(resetFilters);
+        onSearch();
     };
 
     return (
@@ -55,9 +72,13 @@ const SearchFilters = ({ filters, setFilters, onSearch }) => {
                 <Option value={3}>배정완료</Option>
                 <Option value={4}>처리중</Option>
                 <Option value={5}>처리완료</Option>
+                <Option value={9}>예약취소</Option>
             </Select>
             <Button type="primary" onClick={handleSearch}>
                 조회
+            </Button>
+            <Button onClick={handleReset}>
+                초기화
             </Button>
         </Flex>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Select, Button, DatePicker, Radio, Space } from 'antd';
+import { Form, Input, Select, Button, DatePicker, Radio, Space, message } from 'antd';
 import dayjs from 'dayjs';
 import { supabase } from '../services/supabase';
 
@@ -14,45 +14,60 @@ const ReservationForm = ({ reservation, onSuccess }) => {
             form.setFieldsValue({
                 ...reservation,
                 date: reservation.date ? dayjs(reservation.date) : null,
+                state: Number(reservation.state), // state를 숫자형으로 초기화
             });
         } else {
             form.resetFields();
+            form.setFieldsValue({
+                state: 1,
+                date: dayjs(),
+                add: '선택 안함',
+                service: '청소', // 필수 필드 기본값
+                cycle: '이번 한 번만', // 필수 필드 기본값
+                capacity: '20~50kg', // 필수 필드 기본값
+                time: '오전 10시 ~ 오후 1시', // 필수 필드 기본값
+            });
         }
     }, [reservation, form]);
 
-    const openDaumPostcode = () => {
-        new window.daum.Postcode({
-            oncomplete: (data) => {
-                form.setFieldsValue({
-                    postcode: data.zonecode,
-                    address: data.address,
-                });
-            },
-        }).open();
-    };
-
     const onFinish = async (values) => {
         try {
+            console.log('Form values before submission:', values); // 디버깅 로그
+
             const data = {
                 ...values,
                 date: values.date ? values.date.toISOString() : dayjs().toISOString(),
-                addr: `${values.address || ''} ${values.detailAddress || ''}`.trim(),
+                addr: values.addr || '',
+                state: Number(values.state), // state를 숫자형으로 보장
             };
+
+            console.log('Data to be submitted to Supabase:', data); // 디버깅 로그
 
             if (reservation) {
                 const { error } = await supabase
                     .from('ice_res')
                     .update(data)
                     .eq('res_no', reservation.res_no);
-                if (error) throw error;
+                if (error) {
+                    console.error('Error updating reservation:', error);
+                    message.error(`예약 수정 실패: ${error.message}`);
+                    return;
+                }
+                message.success('예약이 성공적으로 수정되었습니다.');
             } else {
                 const { error } = await supabase.from('ice_res').insert([data]);
-                if (error) throw error;
+                if (error) {
+                    console.error('Error inserting reservation:', error);
+                    message.error(`예약 등록 실패: ${error.message}`);
+                    return;
+                }
+                message.success('예약이 성공적으로 등록되었습니다.');
             }
             form.resetFields();
             onSuccess();
         } catch (error) {
-            console.error('Error saving reservation:', error.message);
+            console.error('Unexpected error:', error);
+            message.error(`예약 처리 중 오류가 발생했습니다: ${error.message}`);
         }
     };
 
@@ -61,7 +76,15 @@ const ReservationForm = ({ reservation, onSuccess }) => {
             form={form}
             layout="vertical"
             onFinish={onFinish}
-            initialValues={{ state: 1 }}
+            initialValues={{
+                state: 1,
+                date: dayjs(),
+                add: '선택 안함',
+                service: '청소',
+                cycle: '이번 한 번만',
+                capacity: '20~50kg',
+                time: '오전 10시 ~ 오후 1시',
+            }}
         >
             <div className="toptxt">
                 <h1>아이스케어 <br />제빙기 청소&수리 예약하기</h1>
@@ -121,17 +144,12 @@ const ReservationForm = ({ reservation, onSuccess }) => {
 
             <div className="r-addr">
                 <h1>주소를 입력하세요</h1>
-                <Form.Item name="postcode" label="우편번호">
-                    <Input placeholder="우편번호" readOnly style={{ width: '70%' }} />
-                </Form.Item>
-                <Button onClick={openDaumPostcode} style={{ marginBottom: 16 }}>
-                    🔍 검색
-                </Button>
-                <Form.Item name="address" label="주소">
-                    <Input placeholder="주소" readOnly />
-                </Form.Item>
-                <Form.Item name="detailAddress" label="상세주소">
-                    <Input placeholder="상세주소" />
+                <Form.Item
+                    name="addr"
+                    label="주소"
+                    rules={[{ required: true, message: '주소를 입력해주세요' }]}
+                >
+                    <Input placeholder="주소를 입력하세요" />
                 </Form.Item>
             </div>
 
