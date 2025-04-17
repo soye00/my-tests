@@ -19,6 +19,21 @@ function UserListPage(props) {
     // ];
 
     const[dataSource,setDataSource] = useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+    const onSelectedRowChange = (newSelectedRowkeys) => {
+        console.log('선택된행 키'+newSelectedRowkeys);
+        setSelectedRowKeys(newSelectedRowkeys);
+    }
+
+
+
+    const rowSelection = {
+        selectedRowKey:selectedRowKeys,
+        onchange:onSelectedRowChange,
+
+    };
+
 
     useEffect(()=>{
         async function loadData(){
@@ -28,13 +43,20 @@ function UserListPage(props) {
         loadData()
     },[]);
 
+
         return (
 
         <>
             <Content>
                 <Card hoverable style={{margin: '1rem'}}>
                     <h1>안녕하세요</h1>
-                    <Table columns={colums} dataSource={dataSource} rowKey="id">
+                    <Table
+                        columns={colums}
+                        dataSource={dataSource}
+                        rowKey="id"
+                        rowSelection={rowSelection}>
+                        scroll={{x:'max-content'}}
+                        style={{width:'100%'}}
 
                     </Table>
                 </Card>

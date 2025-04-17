@@ -72,13 +72,39 @@ const AppLayout = () => {
                 collapsedWidth="0"
                 onBreakpoint={(broken) => setCollapsed(broken)}
             >
-                <div style={{height: 32, margin: 16, background: 'rgba(255,255,255,0.2)'}}/>
+                <div
+                    style={{height: 45, margin: 16, background: 'rgba(255,255,255,0.2)'}}
+                    onClick={() => {
+                        if(!screens.md){
+                            setCollapsed(true);
+                        }
+                    }}
+                >
+                    <Link to={`/`}>
+                        <h1 style={{
+                        color:'white',
+                        fontSize:'1.6rem',
+                        textAlign:'center',
+                        lineHeight:'3rem'
+                    }}>관리자
+                        </h1>
+                    </Link>
+                </div>
                 <Menu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['dashboard']}
                     selectedKeys={[selectedKey]}
                     items={items}
+                    onClick={() => {
+
+                        // screens.md -> 화면사이즈가 미디엄 이상일때 true 값 출력
+                        // sx 사이즈 일때는 false
+                        console.log('누름'+screens.md);
+                        if(!screens.md) {
+                            setCollapsed(true); // 메뉴 창 닫기
+                        }
+                    }}
                 />
             </Sider>
 
@@ -118,7 +144,7 @@ const AppLayout = () => {
 
                 {/* 하단 푸터 */}
                 <Footer style={{textAlign: 'center'}}>
-                    2025.04.14 made by parkmyounghoi
+                    2025.04.14 made by so
                 </Footer>
             </Layout>
         </Layout>

@@ -1,0 +1,58 @@
+<!--/*-->
+<!--HTMLCollection : 실시간 반영-->
+<!--NodeList : 실시간 미반영-->
+<!--*/-->
+
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="fr">
+            <li>사과</li>
+            <li>바나나</li>
+            <li>파인애플</li>
+        </ul>
+        <button onclick="addLi();">li추가</button>
+        <button onclick="delLi();">li삭제</button>
+    </div>
+<script>
+    const $ul = document.getElementById('fr')
+    // lastElementChild -> 요소노드만 가지고 온다.
+    // lastChild -> 요소노드와 텍스트노드를 포함해서 가지고 온다
+    const last = $ul.lastChild;
+    console.log('last', last);
+    // last.textContent = 'lastChild 텍스트추가';
+    const lastEle = $ul.lastElementChild;
+    console.log('lastEle', lastEle);
+
+    console.log($ul.childElementCount);
+    console.log($ul.children.length);
+
+
+    const htmlCollection = document.getElementsByTagName('li');
+    console.log(htmlCollection);
+
+    const nodeList = document.querySelectorAll('li');
+    console.log(nodeList);
+
+    function addLi() {
+        const $li = document.createElement('li');
+        $li.textContent = '🍦';
+        $ul.appendChild($li);
+        console.log(htmlCollection);
+        console.log(nodeList);
+    }
+    function delLi() {
+        $ul.removeChild($ul.lastElementChild);
+    }
+</script>
+</body>
+</html>

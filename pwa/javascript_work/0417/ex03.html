@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fr">
+        <li>사과</li>
+        <li>바나나</li>
+        <li>파인애플</li>
+    </ul>
+<script>
+    const $ul = document.getElementById('fr');
+    const $frag = document.createDocumentFragment();
+    ['🍔','🍟','🌭'].forEach(item => {
+       const $li = document.createElement('li');
+       const textnode = document.createTextNode(item);
+       $li.appendChild(textnode);
+       $frag.appendChild($li);
+    });
+    const $li = document.createElement('li');
+    const textnode = document.createTextNode('🍔');
+    $li.appendChild(textnode);
+    $ul.appendChild($li);
+    // 속도 빠르고, XSS 공격으로부터 안전하게
+
+
+</script>
+</body>
+</html>
+
