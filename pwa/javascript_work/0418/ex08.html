@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: slategrey;
+        }
+        .red{
+            color: red;
+        }
+        .white{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="box red">Hello World</div>
+<script>
+    const $box = document.querySelector('.box');
+    console.log($box.className);
+    // $box.className = $box.className.replace('red', 'white');
+    console.log($box.classList);
+    $box.classList.replace('red', 'white');
+</script>
+</body>
+</html>
