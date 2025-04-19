@@ -97,16 +97,7 @@ const ResDashboard = ({ reservations, dateRange, setDateRange }) => {
                         />
                     </Card>
                 </Col>
-                <Col xs={24} sm={12} md={6}>
-                    <Card style={{ background: '#f0f0f5', borderRadius: 8 }}>
-                        <Statistic
-                            title="심화 청소 예약"
-                            value={stats.deepCleaning}
-                            prefix={<CheckCircleOutlined />}
-                            valueStyle={{ color: '#722ed1', fontSize: '24px', fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
+                
             </Row>
         </Card>
     );
