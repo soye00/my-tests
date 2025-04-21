@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Layout, Menu, Button, Grid, Row, Col, Card} from 'antd';
 import {
     MenuFoldOutlined,
@@ -21,6 +21,7 @@ const {useBreakpoint} = Grid;
 
 import { useLocation } from 'react-router-dom';
 import UserLoginPage from "./pages/user/UserLoginPage.jsx";
+import Logout from "./components/Logout.jsx";
 
 // 메뉴 항목 구성
 const items = [
@@ -61,6 +62,17 @@ const AppLayout = () => {
     const screens = useBreakpoint();
     const location = useLocation();
     const selectedKey = location.pathname;
+    const [name, setName] = useState('');
+
+    useEffect(() => {
+        const sessionName = sessionStorage.getItem('name');
+        if(sessionName) {
+            console.log('여기오나');
+            setName(sessionName);
+        }else{
+            setName('');
+        }
+    },[location.pathname]);
 
     return (
         <Layout style={{minHeight: '100vh'}}>
@@ -129,11 +141,14 @@ const AppLayout = () => {
                     )}
                     <div style={{fontSize: '1.1rem', fontWeight: 'bold'}}>
                         {/*세션스토리지에 값이 있으면 로그아웃, 없으면 로그인 출력*/}
+                        <span style={{marginRight:'1.5rem'}}>{ name && `${name} 님, 안녕하세요 😎`}</span>
+                        <Button color={"primary"} variant={"solid"}>
                         {
                             sessionStorage.getItem('name')?
-                                (<Link to={'/user/login'}>로그아웃</Link>):
+                                (<Logout></Logout>):
                                 (<Link to={'/user/login'}>로그인</Link>)
-                        }                                               
+                        }
+                        </Button>
                     </div>
                 </Header>
 

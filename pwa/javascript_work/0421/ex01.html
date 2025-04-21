@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li >바나나</li>
+        <li>사과</li>
+        <li>수박</li>
+    </ul>
+    <button>버튼</button>
+    <button>토글</button>
+</body>
+<script>
+    console.log(document.getElementsByTagName('button'));
+    const button = document.getElementsByTagName('button')[0];
+    console.log(button);
+    button.onclick = function () {
+        const ul = document.getElementsByTagName('ul')[0];
+        const li = document.createElement('li');
+        li.textContent = '🐥🐥🐥';
+        ul.appendChild(li);
+    }
+    const toggleBtn = document.getElementsByTagName('button')[1];
+    toggleBtn.onclick = function () {
+        const lis = document.getElementsByTagName('li');
+        console.log(lis); // > 배열로 들어옴
+        // li.classList.toggle('active'); // => 에러 : 배열에 불가능
+        [...lis].forEach( li => {
+            li.classList.toggle('red');
+        })
+
+    }
+</script>
+</html>

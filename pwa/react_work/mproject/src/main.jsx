@@ -4,6 +4,9 @@ import './index.css'
 import App from './App.jsx'
 import {BrowserRouter} from "react-router-dom";
 import {unstableSetRender} from "antd";
+import {registerSW} from "virtual:pwa-register";
+
+registerSW();
 
 unstableSetRender((node, container) => {
     container._reactRoot ||= createRoot(container);
