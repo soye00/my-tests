@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li>바나나</li>
+        <li>치킨</li>
+        <li>수박</li>
+        <ul>
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+        </ul>
+    </ul>
+
+<script>
+    const $ul = document.getElementById('ul');
+    console.log($ul);
+    console.log($ul.children);
+
+    [...$ul.children].forEach((l)=>(l.onclick = active));
+
+    function active({target}){
+        console.log(target);
+        // 바나나 치킨 수박 아니면 변경 X
+        if(!target.matches('#ul > li')) return;
+        [...$ul.children].forEach(($li)=>{
+            $li.classList.toggle("active", $li == target);
+        });
+    }
+
+</script>
+</body>
+</html>
