@@ -1,138 +1,136 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Input, Layout, message, Modal, notification, Popconfirm, Table} from "antd";
-import {deleteUserByIds, getUsers} from "../../database/userManager.js";
+import {deleteUserByIds, getUsers, updateUserById} from "../../database/userManager.js";
 
-const {Content} = Layout
-
-
+const {Content} = Layout;
 
 function UserListPage(props) {
 
-    // useEffect(() => {
-    //     deleteUserByIds()
-    // },[])
-    async function loadData(){
-        const{data} = await getUsers();
+    const columns = [
+        {title: "Name", dataIndex: "name"},
+        {title: "email", dataIndex: "email"},
+        {title: "age", dataIndex: "age"},
+        {title: "phone", dataIndex: "phone"},
+    ];
+    const [dataSource, setDataSource] = useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
+    const [findUser, setFindUser] = useState({});
+    const [form] = Form.useForm();
+
+    async function loadData() {
+        const {data} = await getUsers();
         setDataSource(data);
     }
 
-    const colums = [
-        {title:'Name', dataIndex:'name'},
-        {title:'Email', dataIndex:'email'},
-        {title:'Age', dataIndex:'age'},
-        {title:'Phone', dataIndex:'phone'},
-    ];
-    // const dataSource = [
-    //     {name:'홍길동', email:"aaa@example.com", age:100, phone:'010-1234-4567'},
-    //
-    // ];
-
-    const[dataSource,setDataSource] = useState([]);
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [findUser, setFindUser] = useState(false);
-
-
-
-    const [form] = Form.useForm();
-
-    const onSelectedRowChange = (newSelectedRowkeys) => {
-        console.log('선택된행 키'+newSelectedRowkeys);
-        setSelectedRowKeys(newSelectedRowkeys);
-    }
-
-
-
     const rowSelection = {
-        selectedRowKey:selectedRowKeys,
-        onchange:onSelectedRowChange,
-
+        selectedRowKeys: selectedRowKeys,
+        onChange: (newSelectedRowKeys) => {
+            setSelectedRowKeys(newSelectedRowKeys);
+        },
     };
 
-
-    function handleEdit() {
-        if(selectedRowKeys.length !== 1){
-            message.warning('하나만 선택')
+    async function handleEdit() {
+        if (selectedRowKeys.length !== 1) {
+            message.warning('수정할려고 하는 사용자 한명 선택해주세요');
             return;
         }
         const target = dataSource.find(user => user.id === selectedRowKeys[0]);
-        setShowModal(target);
+        setFindUser(target);
         form.setFieldsValue(target);
         setShowModal(true);
     }
 
-
-
     async function handleDelete() {
         const {error} = await deleteUserByIds(selectedRowKeys);
-        //에러에 값이 있으면 실패
-        if(error){
+        // 에러는 null값일때 성공한것
+        // 에러에 값이 있으면 실패..
+        if (error) {
             message.error(error);
-        }else{
-            message.success('삭제 완료');
+        } else {
+            // message.success('삭제하였습니다.');
             notification.success({
-                message:"삭제하였습니다 "
+                message: "삭제하였습니다."
             })
             setSelectedRowKeys([]);
-            await loadData()
+            loadData();
         }
     }
 
     async function handleModalOk() {
+        const values = form.getFieldsValue();
+        // message.info('누름');
+        // message.info(findUser.id);
+        // message.info(values)
+
+        const {error} = await updateUserById(findUser.id, values);
+        if(error) {
+            if (error.code === '22P02')
+            {
+                message.error('나이는 숫자를 입력하세요');
+                return;
+            }else{
+                message.success('성공적으로 수정')
+            }
+        }
+        message.success('성공적으로 수정')
+
         setShowModal(false);
+        setSelectedRowKeys([]);
+        loadData();
     }
-    
-    useEffect(()=>{
-        loadData()
-    },[]);
-    
+
+    useEffect(() => {
+        loadData();
+    }, []);
 
     return (
+        <Content>
+            <Card hoverable style={{margin: '1rem'}} styles={{overflowX: 'auto'}}>
+                <h1>안녕하세요</h1>
+                <div style={{margin: '1rem 0'}}>
+                    <Popconfirm title="삭제하시겠습니까?" onConfirm={handleDelete}>
+                        <Button danger disabled={selectedRowKeys.length === 0}>삭제</Button>
+                    </Popconfirm>
+                    <span style={{marginRight: '1rem'}}></span>
+                    <Button type="primary" onClick={handleEdit}>수정</Button>
+                </div>
+                <Modal
+                    title={"사용자수정"}
+                    open={showModal}
+                    onCancel={() => setShowModal(false)}
+                    onOk={handleModalOk}
+                >
+                    <Form layout={'vertical'} form={form}>
+                        <Form.Item label="이름" name="name" rules={[{required: true}]}>
+                            <Input></Input>
+                        </Form.Item>
+                        <Form.Item label="email" name="email" rules={[{required: true, type: 'email'}]}>
+                            <Input></Input>
+                        </Form.Item>
+                        <Form.Item label="age" name="age" rules={[{required: true}]}>
+                            <Input></Input>
+                        </Form.Item>
+                        <Form.Item label="phone" name="phone" rules={[{required: true}]}>
+                            <Input></Input>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+                <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    rowKey="id"
+                    rowSelection={rowSelection}
+                    scroll={{x: 'max-content'}}
+                    style={{width: '100%'}}
+                >
+                </Table>
 
-        <>
-            <Content>
-                <Card hoverable style={{margin: '1rem'}}>
-                    <h1>안녕하세요</h1>
-                    <div style={{margin: '1rem 0'}}>
-                        <Popconfirm title="삭제하겠습니까?" onConfirm={handleDelete}>
-                            <Button danger disabled={selectedRowKeys.length === 0}>삭제</Button>
-                        </Popconfirm>
-                        <span style={{marginRight:'1rem'}}></span>
-                        <Button type={"primary"} onClick={handleEdit}>수정</Button>
-                    </div>
-                    <Modal open={showModal}
-                           title={'사용자수정'}
-                           onCancel={() => setShowModal(false)}
-                           onOk={handleModalOk}
-                    >
-                        <Form layout={'vertical'} form={form}>
-                            <Form.Item label="이름" name="name" rules={[{required:true}]}>
-                                <Input></Input>
-                            </Form.Item>
-                            <Form.Item label="이메일" name="email" rules={[{required:true}]}>
-                                <Input></Input>
-                            </Form.Item>
-                            <Form.Item label="age" name="age" rules={[{required:true}]}>
-                                <Input></Input>
-                            </Form.Item>
-                            <Form.Item label="연락처" name="phone" rules={[{required:true}]}>
-                                <Input></Input>
-                            </Form.Item>
-                        </Form>
-                    </Modal>
-                    <Table
-                        columns={colums}
-                        dataSource={dataSource}
-                        rowKey="id"
-                        rowSelection={rowSelection}>
-                        scroll={{x:'max-content'}}
-                        style={{width:'100%'}}
-
-                    </Table>
-                </Card>
-            </Content>
-        </>
-    );
+            </Card>
+        </Content>
+    )
+        ;
 }
 
 export default UserListPage;

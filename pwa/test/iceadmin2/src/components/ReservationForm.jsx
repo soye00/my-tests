@@ -10,7 +10,6 @@ const ReservationForm = ({ reservation, onSuccess }) => {
     const postcodeRef = useRef(null);
     const basicAddrRef = useRef(null);
     const detailAddrRef = useRef(null);
-    console.log(postcodeRef);
 
     // 초기값 설정
     useEffect(() => {
