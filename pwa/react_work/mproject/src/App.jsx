@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Layout, Menu, Button, Grid, Row, Col, Card} from 'antd';
+import {Layout, Menu, Button, Grid, Row, Col, Card, Result} from 'antd';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -9,21 +9,23 @@ import {
     InfoOutlined,
     FundViewOutlined,
 } from '@ant-design/icons';
+const {Header, Sider, Content, Footer} = Layout;
+const {useBreakpoint} = Grid;
+import { useLocation } from 'react-router-dom';
 import {Link, Route, Routes} from "react-router-dom";
 import RootPage from "./pages/RootPage.jsx";
 import TodoPage from "./pages/todo/TodoPage.jsx";
-import ReviewPage from "./pages/ReviewPage.jsx";
-import UserAddPage from "./pages/user/UserAddPage.jsx";
-import UserListPage from "./pages/user/UserListPage.jsx";
-
-const {Header, Sider, Content, Footer} = Layout;
-const {useBreakpoint} = Grid;
-
-import { useLocation } from 'react-router-dom';
-import UserLoginPage from "./pages/user/UserLoginPage.jsx";
-import Logout from "./components/Logout.jsx";
 import TodoListPage from "./pages/todo/TodoListPage.jsx";
 import TodoAddPage from "./pages/todo/TodoAddPage.jsx";
+
+import UserAddPage from "./pages/user/UserAddPage.jsx";
+import UserListPage from "./pages/user/UserListPage.jsx";
+import UserLoginPage from "./pages/user/UserLoginPage.jsx";
+import Logout from "./components/Logout.jsx";
+
+import ReviewPage from "./pages/review/ReviewPage.jsx";
+import ReviewAddpage from "./pages/review/ReviewAddpage.jsx";
+import ReviewListPage from "./pages/review/ReviewListPage.jsx";
 
 // 메뉴 항목 구성
 const items = [
@@ -44,7 +46,11 @@ const items = [
     {
         key: 'review',
         icon: <FundViewOutlined />,
-        label: <Link to={`/review`}>리뷰</Link>,
+        label: 'review',
+        children: [
+            {key: '/review/list', label:<Link to={`/review/list`}>리뷰리스트</Link>},
+            {key: '/review/add', label:<Link to={`/review/add`}>리뷰추가</Link>}
+        ]
     },
     {
         key: 'users',
@@ -117,7 +123,7 @@ const AppLayout = () => {
 
                         // screens.md -> 화면사이즈가 미디엄 이상일때 true 값 출력
                         // sx 사이즈 일때는 false
-                        console.log('누름'+screens.md);
+                        // console.log('누름'+screens.md);
                         if(!screens.md) {
                             setCollapsed(true); // 메뉴 창 닫기
                         }
@@ -167,6 +173,10 @@ const AppLayout = () => {
                     <Route path="/todo" element={<TodoPage/>}>
                         <Route path="list" element={<TodoListPage/>}></Route>
                         <Route path="add" element={<TodoAddPage/>}></Route>
+                    </Route>
+                    <Route path="/review" element={<ReviewPage/>}>
+                        <Route path="list" element={<ReviewListPage/>}></Route>
+                        <Route path="add" element={<ReviewAddpage/>}></Route>
                     </Route>
 
                 </Routes>
