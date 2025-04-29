@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {Button, Card, Form, Input, Layout, Select} from "antd";
+import {useNavigate} from "react-router-dom";
 
 
 const {Content} = Layout;
 
 function TodoAddPage(props) {
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     const onFinish = (values) => {
         setLoading(true);
         fetch('https://6809e0811f1a52874cde2bd6.mockapi.io/todos',{

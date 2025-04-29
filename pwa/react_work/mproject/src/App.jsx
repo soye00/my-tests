@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {lazy, Suspense, useEffect, useState} from 'react';
 import {Layout, Menu, Button, Grid, Row, Col, Card, Result} from 'antd';
 import {
     MenuFoldOutlined,
@@ -15,7 +15,7 @@ import { useLocation } from 'react-router-dom';
 import {Link, Route, Routes} from "react-router-dom";
 import RootPage from "./pages/RootPage.jsx";
 import TodoPage from "./pages/todo/TodoPage.jsx";
-import TodoListPage from "./pages/todo/TodoListPage.jsx";
+// import TodoListPage from "./pages/todo/TodoListPage.jsx";
 import TodoAddPage from "./pages/todo/TodoAddPage.jsx";
 import TodoModifyPage from "./pages/todo/TodoModifyPage.jsx";
 
@@ -38,7 +38,7 @@ const items = [
     {
         key: 'todo',
         icon: <InfoOutlined />,
-        label: <Link to={`/todo`}>할일</Link>,
+        label: <Link to={`/todo`}>TODO</Link>,
         children: [
             {key: '/todo/list', label: <Link to={`/todo/list`}>TodoLIst</Link>},
             {key: '/todo/add', label: <Link to={`/todo/add`}>TodoAdd</Link>},
@@ -69,12 +69,16 @@ const items = [
     },
 ];
 
+const TodoListPage = lazy(() => import('./pages/todo/TodoListPage.jsx') )
+
 const AppLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
     const screens = useBreakpoint();
     const location = useLocation();
     const selectedKey = location.pathname;
     const [name, setName] = useState('');
+
+
 
     useEffect(() => {
         const sessionName = sessionStorage.getItem('name');
@@ -165,23 +169,24 @@ const AppLayout = () => {
                 </Header>
 
                 {/* 본문 콘텐츠 */}
-                <Routes>
-                    <Route path="/" element={<RootPage/>}></Route>
-                    <Route path="/review" element={<ReviewPage/>}></Route>
-                    <Route path="/user/add" element={<UserAddPage/>}></Route>
-                    <Route path="/user/list" element={<UserListPage/>}></Route>
-                    <Route path="/user/login" element={<UserLoginPage/>}></Route>
-                    <Route path="/todo" element={<TodoPage/>}>
-                        <Route path="list" element={<TodoListPage/>}></Route>
-                        <Route path="add" element={<TodoAddPage/>}></Route>
-                        <Route path="modify/:id" element={<TodoModifyPage/>}></Route>
-                    </Route>
-                    <Route path="/review" element={<ReviewPage/>}>
-                        <Route path="list" element={<ReviewListPage/>}></Route>
-                        <Route path="add" element={<ReviewAddpage/>}></Route>
-                    </Route>
-
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path="/" element={<RootPage/>}></Route>
+                        <Route path="/review" element={<ReviewPage/>}></Route>
+                        <Route path="/user/add" element={<UserAddPage/>}></Route>
+                        <Route path="/user/list" element={<UserListPage/>}></Route>
+                        <Route path="/user/login" element={<UserLoginPage/>}></Route>
+                        <Route path="/todo" element={<TodoPage/>}>
+                            <Route path="list" element={<TodoListPage/>}></Route>
+                            <Route path="add" element={<TodoAddPage/>}></Route>
+                            <Route path="modify/:id" element={<TodoModifyPage/>}></Route>
+                        </Route>
+                        <Route path="/review" element={<ReviewPage/>}>
+                            <Route path="list" element={<ReviewListPage/>}></Route>
+                            <Route path="add" element={<ReviewAddpage/>}></Route>
+                        </Route>
+                    </Routes>
+                </Suspense>
 
                 {/* 하단 푸터 */}
                 <Footer style={{textAlign: 'center'}}>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Input, Layout, message, notification, Select} from "antd";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 
 const {Content} = Layout;
@@ -9,6 +9,7 @@ function TodoModifyPage(props) {
     const [loading, setLoading] = useState(false);
     const {id} = useParams();
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
     const [values,setValues] = useState({
         createdAt: "2025-04-25T00:56:48.566Z",
@@ -40,6 +41,7 @@ function TodoModifyPage(props) {
             console.log(data);
         }).then(data => notification.success({message: "저장 성공"}) )
         setLoading(false);
+        navigate('./todo/list');
     }
     return (
         <div>

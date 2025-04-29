@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, message, Table, Tag} from "antd";
 import {useNavigate} from "react-router-dom";
 
+
 function TodoListPage(props) {
     const [todos,setTodos] = useState([
         {"id":1,"todo":"Do something nice for someone you care about","completed":false,"userId":152},
@@ -14,11 +15,15 @@ function TodoListPage(props) {
         fetch('https://6809e0811f1a52874cde2bd6.mockapi.io/todos')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 const sortD = data.sort((a, b) => b.id - a.id);
                 setTodos(sortD);
             })
     }
+
+    useEffect(() => {
+        loadData();
+    },[])
 
     const columns = [
         {
@@ -61,6 +66,11 @@ function TodoListPage(props) {
         }
     }
 
+    const handleDelete = () => {
+        message.success('삭제누름');
+        console.log()
+    }
+
     return (
         <div>
             <h1>todo list </h1>
@@ -73,10 +83,12 @@ function TodoListPage(props) {
                     }
                     navigate(`/todo/modify/${selectedRowkeys[0]}`)
                 }}>수정</Button>
-                <Button type={"default"} style={{margin:'1rem 0'}} onClick={() => {}}>삭제</Button>
+                <Button type={"default"} style={{margin:'1rem 0'}} onClick={handleDelete}>삭제</Button>
 
             </div>
-            
+            {
+                todos.length === 0 ? (<h1>불러오는 중</h1>) : (<Table rowSelection={rowSelection} dataSource={todos} rowKey="id"></Table>)
+            }
 
             <Table rowSelection={rowSelection} dataSource={todos} rowKey="id" columns={columns}>
                 {
