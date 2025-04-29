@@ -1,28 +1,28 @@
 {
   "todos": [
     {
-      "id": "1",
-      "toto": "아침먹기",
-      "completed": true
+      "todo": "아침먹기 변경",
+      "completed": false,
+      "id": "1"
     },
     {
       "id": "3",
-      "toto": "저녁먹기",
+      "todo": "저녁먹기",
       "completed": false
     },
     {
       "id": "4",
-      "toto": "산책하기",
+      "todo": "산책하기",
       "completed": true
     },
     {
       "id": "5",
-      "toto": "야구보기",
+      "todo": "야구보기",
       "completed": false
     },
     {
       "id": "5",
-      "toto": "책읽기",
+      "todo": "책읽기",
       "completed": false
     },
     {
@@ -31,14 +31,16 @@
       "id": "71fc"
     },
     {
-      "id": "edae",
-      "todo": "니ㅏ러ㅣ나어린어",
+      "id": "dcc2",
+      "todo": "추가됨?",
       "completed": false
-    },
+    }
+  ],
+  "users": [
     {
-      "id": "6bf6",
-      "todo": "니ㅏ러ㅣ나어린어",
-      "completed": false
+      "id": 1,
+      "name": "john",
+      "age": 20
     }
   ]
 }

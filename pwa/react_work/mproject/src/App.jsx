@@ -17,6 +17,7 @@ import RootPage from "./pages/RootPage.jsx";
 import TodoPage from "./pages/todo/TodoPage.jsx";
 import TodoListPage from "./pages/todo/TodoListPage.jsx";
 import TodoAddPage from "./pages/todo/TodoAddPage.jsx";
+import TodoModifyPage from "./pages/todo/TodoModifyPage.jsx";
 
 import UserAddPage from "./pages/user/UserAddPage.jsx";
 import UserListPage from "./pages/user/UserListPage.jsx";
@@ -173,6 +174,7 @@ const AppLayout = () => {
                     <Route path="/todo" element={<TodoPage/>}>
                         <Route path="list" element={<TodoListPage/>}></Route>
                         <Route path="add" element={<TodoAddPage/>}></Route>
+                        <Route path="modify/:id" element={<TodoModifyPage/>}></Route>
                     </Route>
                     <Route path="/review" element={<ReviewPage/>}>
                         <Route path="list" element={<ReviewListPage/>}></Route>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+ <button id="GET">GET</button>
+ <br>
+ <input type="text" name="" id="todo">
+ <button id="POST">POST</button>
+ <br>
+ <button id="PUT">PUT</button>
+ <input type="text" name="" id="putt">
+ <button id="PATCH">PATCH</button>
+ <button id="DELETE">DELETE</button>
+
+ <h1>todos</h1>
+ <div id="result"></div>
+ <script>
+    const $div = document.getElementById('result');
+    let id;
+    $div.addEventListener('click', ({target}) => {
+        console.log(target);
+        console.log(target.tagName);
+        if(target.tagName === 'INPUT') {
+            id = target.value;
+            console.log(id);
+        }
+
+    })
+
+
+    const $todos = () => {
+            $div.innerHTML = '';
+            axios.get('http://localhost:5000/todos').then((data) => {
+                console.log(data);
+                data.data.forEach((item) => {
+                    const $subDiv = document.createElement('div');
+
+                    const $checkBox = document.createElement('input');
+                    $checkBox.type = 'checkbox';
+                    $checkBox.value = item.id;
+
+                    const $h1 = document.createElement('h1');
+                    $h1.textContent = item.todo;
+
+                    $subDiv.appendChild($checkBox);
+                    $subDiv.appendChild($h1);
+
+                    $div.appendChild($subDiv);
+                })
+            })
+    };
+
+    document.getElementById('GET').addEventListener('click', $todos);
+
+
+
+    document.getElementById('POST').addEventListener('click', function () {
+        const todo = document.getElementById('todo').value;
+        axios.post('http://localhost:5000/todos',{
+            todo:todo, completed:false
+        }).then(() => $todos());
+    });
+
+    document.getElementById('PUT').addEventListener('click', function () {
+        const update = document.getElementById('putt').value;
+        axios.put(`http://localhost:5000/todos/${id}`, {
+            todo:update, completed:false
+        } ).then(() => $todos());
+    });
+
+    document.getElementById('PATCH').addEventListener('click', function () {
+
+    });
+
+    document.getElementById('DELETE').addEventListener('click', function () {
+        axios.delete(`http://localhost:5000/todos/${id}`).then(() => $todos());
+
+    });
+ </script>
+</body>
+</html>

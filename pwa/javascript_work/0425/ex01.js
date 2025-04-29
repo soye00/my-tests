@@ -1,7 +1,17 @@
-console.log('test');
+async function aa(){
+    return ('test');
+}
 
-fetch('http://localhost:5000/todos')
-.then(res => res.json())
-.then(data => {
-    console.log(data);
-})
+/*
+async -> 일정 시간이 걸릴 수 있다
+promis 꺼내는 방법
+1. async await 사용
+2. then() 사용
+ */
+
+const baa = await aa();
+console.log(baa);
+
+aa().then((baa) => {
+    console.log(baa);
+});
