@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, message, Table, Tag} from "antd";
 import {useNavigate} from "react-router-dom";
+import {todosReq} from "../../api/mockapi.js";
 
 
 function TodoListPage(props) {
@@ -67,8 +68,21 @@ function TodoListPage(props) {
     }
 
     const handleDelete = () => {
-        message.success('삭제누름');
-        console.log()
+        // console.log(selectedRowkeys);
+        const result = [];
+        selectedRowkeys.forEach(id => {
+            todosReq.delete(id)
+                .then(res => {
+                    result.push(res);
+                    console.log(result);
+                    if(result.includes(200)){
+                        message.success('삭제되었습니다');
+                        loadData();
+                    }
+                })
+        })
+
+
     }
 
     return (
@@ -86,9 +100,9 @@ function TodoListPage(props) {
                 <Button type={"default"} style={{margin:'1rem 0'}} onClick={handleDelete}>삭제</Button>
 
             </div>
-            {
-                todos.length === 0 ? (<h1>불러오는 중</h1>) : (<Table rowSelection={rowSelection} dataSource={todos} rowKey="id"></Table>)
-            }
+            {/*{*/}
+            {/*    todos.length === 0 ? (<h1>불러오는 중</h1>) : (<Table rowSelection={rowSelection} dataSource={todos} rowKey="id"></Table>)*/}
+            {/*}*/}
 
             <Table rowSelection={rowSelection} dataSource={todos} rowKey="id" columns={columns}>
                 {

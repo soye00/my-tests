@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let result = "result";
+    const getPromise = (url) => {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            // XMLHttpRequest 는 node 에서 존재 X => 브라우저에서 확인 가능
+            xhr.open('GET', url)
+            xhr.send();
+
+            xhr.onload = () => {
+                result = xhr.response;
+                if(xhr.status === 200) resolve(xhr.response);
+                else reject('통신실패'+xhr.status);
+            }
+        });
+    }
+
+    getPromise('https://6809e0571f1a52874cde2b14.mockapi.io/todos',console.log)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {console.log(err)});
+
+</script>
+</body>
+</html>
