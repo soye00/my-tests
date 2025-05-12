@@ -6,7 +6,7 @@ function AirTable(props) {
   const [data, setData] = useState(props);
 
   useEffect(() => {
-    console.log("airTable useEffect");
+    // console.log("airTable useEffect");
     setData(props);
   }, [props]);
 
@@ -17,14 +17,14 @@ function AirTable(props) {
       iaqi: { co, no2, o3, pm10, pm25, so2 },
     } = props;
 
-    console.log(aqi);
-    console.log(geo);
-    console.log("일산화탄소", co);
-    console.log("이산화질소", no2);
-    console.log("오존", o3);
-    console.log("미세먼지", pm10);
-    console.log("초미세먼지", pm25);
-    console.log("아황산가스", so2);
+    // console.log(aqi);
+    // console.log(geo);
+    // console.log("일산화탄소", co);
+    // console.log("이산화질소", no2);
+    // console.log("오존", o3);
+    // console.log("미세먼지", pm10);
+    // console.log("초미세먼지", pm25);
+    // console.log("아황산가스", so2);
   } catch (e) {}
 
   const dataSource = [
@@ -71,7 +71,7 @@ function AirTable(props) {
         <h2>초미세먼지 : {data?.iaqi?.pm25?.v} </h2>
         <h2>아황산가스 : {data?.iaqi?.so2?.v} </h2>
       
-      <Table dataSource={dataSource} columns={columns} pagination={false} />;
+      <Table dataSource={dataSource} columns={columns} pagination={false} />
     </Card>
   );
 }
