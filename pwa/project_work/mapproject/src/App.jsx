@@ -12,12 +12,14 @@ import Link from "antd/es/typography/Link.js";
 import Reviews from "./components/Reviews.jsx";
 
 
+
 function App() {
   const [cities, setCities] = useState([]);
   const [aqiInfo, setAqiInfo] = useState({});
   const [city,setCity] = useState(null);
     const [open, setOpen] = useState(false);
     const [placement, setPlacement] = useState('left');
+
     const showDrawer = () => {
         setOpen(true);
     };
@@ -33,21 +35,17 @@ function App() {
       libraries: ["clusterer", "services", "drawing"]
   })
 
-  // supabase 에서 cities 데이터 가져오기
   useEffect(() => {
-      fetchCities().then(data => {
-          // console.log(data);
+      fetchCities().then((data)=> {
           setCities(data);
       });
-
-  },[])
+  },[]);
 
   const clickAqi = (city) =>{
-    console.log(city);
     fetchAqi(city.latitude, city.longitude).then(data => {
         setAqiInfo(data);
     });
-  }
+  };
 
 
 
@@ -69,14 +67,15 @@ function App() {
             <p>Some contents...</p>
             <p>Some contents...</p>
         </Drawer>
-      <Map center={{lat: 35.8714, lng: 128.6014}} level={8}
-           style={{width:'100%', height:'80vh'}}>
+      <Map center={{lat: 35.8714, lng: 128.6014}}
+           level={8}
+           style={{width:'100%', height:'80vh'}}
+      >
           {cities.map((city) => (
               <MapMarker key={city.id}
               position={{lat:city.latitude,lng:city.longitude}}
               onClick={() =>{
                   clickAqi(city);
-                  console.log(city);
                   setCity(city);
               }}>
               </MapMarker>
@@ -84,6 +83,9 @@ function App() {
       </Map>
       <Reviews city={city}></Reviews>
       <AirTable {...aqiInfo}></AirTable>
+
+
+
 
 
     </>

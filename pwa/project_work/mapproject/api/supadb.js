@@ -15,4 +15,13 @@ export const fetchCities = async () => {
     }
 }
 
+export const fetchReviews = async (cityId) => {
+    try{
+        const {data} = await supabase.from('reviews').select('*').eq('city_id', cityId);
+        return data;
+    }catch(e){
+        return [];
+    }
+}
+
 
