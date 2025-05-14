@@ -5,6 +5,7 @@ import App from './App.jsx'
 
 import { unstableSetRender } from 'antd';
 import { createRoot } from 'react-dom/client';
+import {BrowserRouter} from "react-router-dom";
 
 // ant design React 19버전 사용위해 추가
 unstableSetRender((node, container) => {
@@ -19,6 +20,8 @@ unstableSetRender((node, container) => {
 
 createRoot(document.getElementById('root')).render(
     // <StrictMode>
-    <App />
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
     // </StrictMode>,
 )
