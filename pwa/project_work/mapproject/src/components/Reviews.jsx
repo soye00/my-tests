@@ -12,8 +12,7 @@ const Reviews = ({ city, aqi }) => {
     }
 
     const [reviews, setReviews] = useState(null);
-
-    useEffect(() => {
+    const loadReviews = async () => {
         fetchReviews(city.id)
             .then((data) => {
                 setReviews(data); // 화면 재랜더링
@@ -21,6 +20,10 @@ const Reviews = ({ city, aqi }) => {
             .catch((e) => {
                 console.log(e);
             });
+    }
+
+    useEffect(() => {
+        loadReviews();
     }, [city]);
 
     // custom 훅은 맨 마지막에 호출되야 한다고 경고 메시지 떠서 옮겼습니다.
@@ -32,6 +35,7 @@ const Reviews = ({ city, aqi }) => {
         const ret = await postReview(values);
         if(ret === 'success') {
             message.success('성공적으로 저장');
+            loadReviews();
         }
         else{
             message.error('저장실패');

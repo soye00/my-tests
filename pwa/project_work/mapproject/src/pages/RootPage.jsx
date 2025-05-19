@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button} from "antd";
 import Reviews from "../components/Reviews.jsx";
 import AirTable from "../components/AirTable.jsx";
-import {Map, MapMarker, useKakaoLoader} from "react-kakao-maps-sdk";
+import {CustomOverlayMap, Map, MapMarker, useKakaoLoader} from "react-kakao-maps-sdk";
 import {fetchCities} from "../../api/supadb.js";
 import {fetchAqi} from "../../api/airapi.js";
 
@@ -10,6 +10,7 @@ function RootPage(props) {
     const [cities, setCities] = useState([]);
     const [aqiInfo, setAqiInfo] = useState({});
     const [city, setCity] = useState(null);
+    const [hoveredCity, setHoveredCity] = useState(null);
 
     useKakaoLoader({
         appkey: '79f216710859bc2ebef6080c725aa960',
@@ -42,9 +43,30 @@ function RootPage(props) {
                         onClick={() => {
                             clickAqi(city);
                             setCity(city);
-                        }}>
-                    </MapMarker>
+                        }}
+                        onMouseOut={() =>{
+                            setHoveredCity(null);
+                        }}
+                        onMouseOver={() => {
+                            setHoveredCity(city);
+                        }}
+                    ></MapMarker>
                 ))}
+                {
+                    hoveredCity && <CustomOverlayMap
+                        position={{lat:hoveredCity.latitude, lng:hoveredCity.longitude}}>
+                        <div
+                            style={{
+                                padding: "5px 10px",
+                                backgroundColor: "rgba(255,255,255,0.9)",
+                                borderRadius: "4px",
+                                fontSize: "1rem",
+                                boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
+                                whiteSpace: "nowrap",
+                            }}
+                        >{hoveredCity.name}</div>
+                    </CustomOverlayMap>
+                }
             </Map>
             <Reviews city={city} aqi={aqiInfo.aqi}></Reviews>
             <AirTable {...aqiInfo}></AirTable>

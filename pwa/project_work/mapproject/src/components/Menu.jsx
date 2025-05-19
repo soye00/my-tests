@@ -41,6 +41,10 @@ function Menu(props) {
                         navigate('/user');
                         setOpen(false);
                     }}>user</Button></li>
+                    <li><Button onClick={() => {
+                        navigate('/traffic');
+                        setOpen(false);
+                    }}>traffic</Button></li>
 
                 </ul>
                 <p>Some contents...</p>

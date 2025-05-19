@@ -8,6 +8,7 @@ import {Route, Routes, Link, useNavigate} from "react-router-dom";
 import RootPage from "./pages/RootPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import Menu from "./components/Menu.jsx";
+import TrafficPage from "./pages/TrafficPage.jsx";
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Routes>
             <Route path="/" element={<RootPage/>}></Route>
             <Route path="/user" element={<UserPage/>}></Route>
+            <Route path="/traffic" element={<TrafficPage />}></Route>
         </Routes>
 
 
