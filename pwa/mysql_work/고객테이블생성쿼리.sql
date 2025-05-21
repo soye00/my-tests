@@ -1,4 +1,4 @@
-customerscustomersCREATE TABLE customers (
+qwcustomerscustomerscustomersCREATE TABLE customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,  -- 고객 ID (기본키, 자동 증가)
     customer_name VARCHAR(100),                   -- 고객 이름
     contact_name VARCHAR(100),                    -- 연락처 이름
