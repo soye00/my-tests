@@ -12,7 +12,7 @@ function App() {
 
 
   const getUsers = async (e) => {
-    const result = await axios.get("http://localhost:8080/");
+    const result = await axios.get("https://port-0-back01-manaowvf213a09cd.sel4.cloudtype.app/");
     const {data, status} = result;
 
     setUsers(data);
