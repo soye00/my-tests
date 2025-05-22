@@ -3,9 +3,11 @@ const express = require("express"); // npm i express 라이브러리 : http 모�
 const path = require("path"); // path : 경로 관리 모듈
 const morgan = require("morgan"); // morgan 라이브러리 : 기록 남기는 모듈
 const cookieParser = require("cookie-parser");  // application 안 cookie -> 자동으로 요청할 때 날아감 
-
+const cors = require("cors"); // cors 미들웨어 장착 
 
 const app = express(); // app express 객체 생성
+
+app.use(cors());
 
 // app.use(morgan("dev")); // 미들웨어 등록
 // dev - 개발단계 combined 실제운영 배포에서 사용
