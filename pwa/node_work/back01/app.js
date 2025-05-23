@@ -1,9 +1,13 @@
 const pool = require("./db"); //db 연결 -> pool 에 담기
+
+const {supabase} = require('./supadb');
 const express = require("express"); // npm i express 라이브러리 : http 모듈 확장한 프레임워크
 const path = require("path"); // path : 경로 관리 모듈
 const morgan = require("morgan"); // morgan 라이브러리 : 기록 남기는 모듈
 const cookieParser = require("cookie-parser");  // application 안 cookie -> 자동으로 요청할 때 날아감 
 const cors = require("cors"); // cors 미들웨어 장착 
+const e = require("express");
+
 
 const app = express(); // app express 객체 생성
 
@@ -31,6 +35,16 @@ app.use((req, res, next) => {
     console.log("모든 요청은 여기 들렸다가 진행된다.");
     next(); // next -> 그 다음 미들웨어로 진행 
 });
+
+
+app.get('/supauser', async (req,res,next)=>{
+    const {data,error} = await supabase.from('userss').select();
+    console.log(data);
+    console.log(data[0].name);
+    console.log(error);
+
+    res.json({message :"잘했네", data})
+})
 
 
 

@@ -9,10 +9,11 @@ function App() {
 
   // const [users,setUsers] = useState([{'id': '홍길동', 'password':'1234'}]);
   const [users, setUsers] = useState(dbusers);
+  const [supausers, setsupaUsers] = useState(dbusers);
 
 
   const getUsers = async (e) => {
-    const result = await axios.get("https://port-0-back01-manaowvf213a09cd.sel4.cloudtype.app/");
+    const result = await axios.get("http://localhost:8080");
     const {data, status} = result;
 
     setUsers(data);
@@ -20,9 +21,15 @@ function App() {
     // console.log(data);
     // console.log(data[0]);
     // console.log(status);
-
   }
 
+  const getSupaUsers = async (e) => {
+    const {data : {data, message}} = await axios.get('http://localhost:8080/supauser');
+    console.log(data);
+    console.log(message)
+
+    setsupaUsers(data);
+  };
 
   return (
     <>
@@ -30,7 +37,7 @@ function App() {
         <h1 className={'text-3xl'}>안녕</h1>
         {/*{JSON.stringify(users[0])}*/}
         {
-          users.map((user) =>{
+          users && users.map((user) =>{
             return <div key={user.id}>
               <div>{user.id}</div>
               <div>{user.password}</div>
@@ -39,7 +46,20 @@ function App() {
         }
         <button
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer"
-            onClick={(e)=>{getUsers(e)}}>불러오기</button>
+            onClick={(e)=>{getUsers(e)}}>mariadb불러오기</button>
+        <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer"
+            onClick={(e)=>{getSupaUsers(e)}}>supadb불러오기</button>
+        {
+            supausers && supausers.map((user) =>{
+              return <div key={user.id}>
+                <div>{user.email}</div>
+                <div>{user.name}</div>
+                <div>{user.password}</div>
+                <div>{user.created_at}</div>
+              </div>
+            })
+        }
       </div>
 
 
