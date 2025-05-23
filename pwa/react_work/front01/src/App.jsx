@@ -2,7 +2,9 @@ import './App.css'
 import axios from "axios";
 import {useState} from "react";
 import dbusers from "./dbusers.json";
+import AirComponent from "./components/AirComponent.jsx";
 
+const backUrl = import.meta.env.VITE_BACK_URL;
 
 
 function App() {
@@ -13,7 +15,7 @@ function App() {
 
 
   const getUsers = async (e) => {
-    const result = await axios.get("http://localhost:8080");
+    const result = await axios.get(backUrl);
     const {data, status} = result;
 
     setUsers(data);
@@ -24,7 +26,7 @@ function App() {
   }
 
   const getSupaUsers = async (e) => {
-    const {data : {data, message}} = await axios.get('http://localhost:8080/supauser');
+    const {data : {data, message}} = await axios.get(`${backUrl}/supauser`);
     console.log(data);
     console.log(message)
 
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <>
+      <AirComponent></AirComponent>
       <div>
         <h1 className={'text-3xl'}>안녕</h1>
         {/*{JSON.stringify(users[0])}*/}
