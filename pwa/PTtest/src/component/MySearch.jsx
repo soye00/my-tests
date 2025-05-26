@@ -2,17 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { Input, List, Spin, Button, message } from "antd";
 import axios from "axios";
 import { StarOutlined, StarFilled, ReloadOutlined } from "@ant-design/icons";
+import styles from "../css/MySearch.module.css";
 
 const { Search } = Input;
 
-const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
+const MySearch = ({ onToggleFavorite, favorites }) => {
+    const key = 'one_key';
+
     const [searchResults, setSearchResults] = useState([]);
     const [isSearched, setIsSearched] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showNoResults, setShowNoResults] = useState(false);
     const [searchValue, setSearchValue] = useState("");
-    const [isExpanded, setIsExpanded] = useState(false);
+    // const [isExpanded, setIsExpanded] = useState(false);
     const searchRef = useRef(null);
+
 
     useEffect(() => {
         if (!isLoading && isSearched) {
@@ -35,14 +39,14 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
             setIsSearched(false);
             setIsLoading(false);
             setShowNoResults(false);
-            setIsExpanded(false);
+            // setIsExpanded(false);
             return;
         }
 
         setIsSearched(true);
         setIsLoading(true);
         setShowNoResults(false);
-        setIsExpanded(false);
+        // setIsExpanded(false);
 
         axios
             .get(
@@ -57,7 +61,11 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
             })
             .catch((error) => {
                 console.error("정류장 검색 실패:", error);
-                message.error("정류장 검색에 실패했습니다.");
+                message.error({
+                    content: "정류장 검색에 실패했습니다.",
+                    key,
+                    duration: 2,
+                });
             })
             .finally(() => {
                 setIsLoading(false);
@@ -70,7 +78,7 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
         setIsLoading(false);
         setShowNoResults(false);
         setSearchValue("");
-        setIsExpanded(false);
+        // setIsExpanded(false);
         if (searchRef.current) {
             searchRef.current.input.focus();
         }
@@ -80,22 +88,26 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
         const isFavorite = favorites.some((fav) => fav.bsId === item.bsId);
         onToggleFavorite(item);
         message.success(
-            isFavorite
+            {
+                content: isFavorite
                 ? "즐겨찾기에서 제거되었습니다."
-                : "즐겨찾기에 추가되었습니다."
+                : "즐겨찾기에 추가되었습니다.",
+                key,
+                duration: 2,
+    }
         );
     };
 
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-    };
+    // const toggleExpand = () => {
+    //     setIsExpanded(!isExpanded);
+    // };
 
-    const displayedResults = isExpanded ? searchResults : searchResults.slice(0, 5);
+    // const displayedResults = isExpanded ? searchResults : searchResults.slice(0, 5);
 
     return (
-        <div style={{ padding: "1rem", boxSizing: "border-box" }}>
-            <h3>대구 버스 정류장 검색</h3>
-            <div style={{ marginBottom: "1rem", display: "flex", gap: "8px" }}>
+        <div className={styles.container}>
+            <h3 className={styles.title}>대구 버스 정류장 검색</h3>
+            <div className={styles.searchWrapper}>
                 <Search
                     ref={searchRef}
                     placeholder="정류장 검색"
@@ -104,31 +116,32 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onSearch={handleSearch}
-                    style={{ flex: 1 }}
+                    className={styles.searchInput}
                 />
                 {isSearched && (
                     <Button
                         icon={<ReloadOutlined />}
                         onClick={handleReset}
                         size="large"
+                        className={styles.resetButton}
                     />
                 )}
             </div>
             {isSearched && (
-                <div style={{ minHeight: "300px" }}>
+                <div className={styles.resultsWrapper}>
                     {isLoading ? (
-                        <div style={{ textAlign: "center", padding: "1rem", minHeight: "300px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <div className={styles.loading}>
                             <Spin tip="검색 중..." />
                         </div>
                     ) : showNoResults ? (
-                        <div style={{ minHeight: "300px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <div className={styles.noResults}>
                             <p>검색 결과가 없습니다.</p>
                         </div>
                     ) : (
                         <div>
                             <List
                                 bordered
-                                dataSource={displayedResults}
+                                dataSource={searchResults}
                                 renderItem={(item) => (
                                     <List.Item
                                         actions={[
@@ -137,7 +150,7 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
                                                     e.stopPropagation();
                                                     handleToggleFavorite(item);
                                                 }}
-                                                style={{ cursor: "pointer" }}
+                                                className={styles.favoriteIcon}
                                             >
                                                 {favorites.some((fav) => fav.bsId === item.bsId) ? (
                                                     <StarFilled style={{ color: "#fadb14" }} />
@@ -146,47 +159,40 @@ const MySearch = ({ onSelectStop, onToggleFavorite, favorites }) => {
                                                 )}
                                             </span>,
                                         ]}
-                                        onClick={() => onSelectStop(item)}
-                                        style={{ cursor: "pointer" }}
+                                        className={styles.listItem}
                                     >
-                                        <div style={{ width: "100%" }}>
-                                            <div
-                                                style={{
-                                                    fontWeight: "bold",
-                                                    fontSize: "1.1em",
-                                                    marginBottom: "4px",
-                                                }}
-                                            >
+
+                                        <div className={styles.listItemContent}>
+                                            <div className={styles.stopName} title={item.bsNm}>
                                                 {item.bsNm}
                                             </div>
-                                            <div
-                                                style={{
-                                                    color: "#666",
-                                                    fontSize: "0.9em",
-                                                    marginBottom: "4px",
-                                                }}
-                                            >
+                                            <div className={styles.stopId} title={`정류장 ID: ${item.bsId}`}>
                                                 정류장 ID: {item.bsId}
                                             </div>
-                                            <div style={{ color: "#1890ff", fontSize: "0.9em" }}>
+                                            <div className={styles.routeList} title={`경유 노선: ${item.routeList}`}>
                                                 경유 노선: {item.routeList}
                                             </div>
                                         </div>
+
                                     </List.Item>
+
                                 )}
-                                style={{ maxHeight: "250px", overflowY: "auto", marginBottom: "1rem" }}
+
+                                className={styles.list}
+
                             />
-                            <div style={{ minHeight: "32px", display: "flex", justifyContent: "center" }}>
-                                {searchResults.length > 5 && (
-                                    <Button
-                                        onClick={toggleExpand}
-                                        style={{ width: "150px" }}
-                                        type="primary"
-                                    >
-                                        {isExpanded ? "숨기기" : `더 보기 (${searchResults.length - 5}개)`}
-                                    </Button>
-                                )}
-                            </div>
+                            {/*<div className={styles.buttonWrapper}>*/}
+                            {/*    {searchResults.length > 5 && (*/}
+                            {/*        <Button*/}
+                            {/*            onClick={toggleExpand}*/}
+                            {/*            className={styles.toggleButton}*/}
+                            {/*            type="primary"*/}
+                            {/*        >*/}
+                            {/*            {isExpanded ? "숨기기" : `더 보기 (${searchResults.length - 5}개)`}*/}
+                            {/*        </Button>*/}
+                            {/*    )}*/}
+                            {/*</div>*/}
+
                         </div>
                     )}
                 </div>

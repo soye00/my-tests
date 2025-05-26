@@ -1,0 +1,90 @@
+.container {
+    padding: 1rem;
+    box-sizing: border-box;
+    max-width: 57.5rem;
+    /*margin: 0 auto;*/
+}
+
+.title {
+    margin-bottom: 1rem;
+}
+
+.searchWrapper {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 1rem;
+}
+
+.searchInput {
+    flex: 1;
+    max-width: 600px;
+}
+
+.resetButton {
+    align-self: center;
+}
+
+.resultsWrapper {
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.loading {
+    text-align: center;
+    padding: 1rem;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noResults {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.listItem {
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.listItemContent {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stopName,
+.stopId,
+.routeList {
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 0;
+}
+
+.favoriteIcon {
+    cursor: pointer;
+}
+
+.buttonWrapper {
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.toggleButton {
+    width: 150px;
+}
