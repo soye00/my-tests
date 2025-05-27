@@ -17,8 +17,8 @@ function App() {
     // console.log(result.data);
 
     const {data,error} = await axios.get(`${API_URL}`);
-    console.log(data);
-    console.log(error);
+    // console.log(data);
+    // console.log(error);
 
     setData(data)
 

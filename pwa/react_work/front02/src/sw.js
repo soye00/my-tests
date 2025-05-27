@@ -12,7 +12,7 @@ registerRoute(
 
 
 self.addEventListener('push', (event) => {
-    console.log(event);
+    console.log('event',event);
     const data = event.data?.json() || {
         title: '기본 제목',
         body: '기본 내용',
@@ -26,11 +26,11 @@ self.addEventListener('push', (event) => {
             url: data.url // 나중에 클릭 시 이동할 경로
         }
     }
-
+    // notification 보여줘라..
     event.waitUntil(
         self.registration.showNotification(data.title, options)
     )
-})
+});
 
 
 self.addEventListener('notificationclick', (event) => {

@@ -19,7 +19,7 @@ const mymid = require("./mymiddle");
 
 const app = express();
 
-app.use(morgan());
+app.use(morgan("tiny"));
 app.use(cors());
 app.use("/images", express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -29,7 +29,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(mymid);
 
-app.get('/subscribe',(req,res,next)=> {
+app.post('/subscribe',(req,res,next)=> {
     console.log(req.body);
     res.send('구독 성공');
 })

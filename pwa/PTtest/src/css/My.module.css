@@ -76,14 +76,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 400px; /* title 최대 너비 고정 */
+    max-width: 400px;
 }
 
 .cardTitleText {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px; /* 텍스트 최대 너비 */
+    max-width: 200px;
 }
 
 .refreshTimer {
