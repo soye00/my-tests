@@ -42,7 +42,15 @@ function App() {
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                        });
+                        })
+                            .then((res)=>{
+                                console.log(res);
+                                console.log('구독성공');
+                            })
+                            .catch((err)=>{
+                                console.log("구독실패");
+                                console.log(err);
+                            });
                     })
                     .catch((error) => {
                         console.error("푸시 구독 실패:", error);

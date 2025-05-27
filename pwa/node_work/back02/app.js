@@ -16,6 +16,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
 const mymid = require("./mymiddle"); 
+const { title } = require("process");
 
 const app = express();
 
@@ -29,10 +30,39 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(mymid);
 
+//서버 시작 누르기 되면 배열 값 삭제 새로고침
+// 배열이기 때문에 서버 재시작 하면 프론트 정보 사라짐
+// db에 넣어야 함 
+const ss = [];
+
 app.post('/subscribe',(req,res,next)=> {
-    console.log(req.body);
+    ss.push({sub:req.body});
+    console.log(ss);
     res.send('구독 성공');
-})
+});
+
+app.get("/send",async (req,res,next)=>{
+    try{
+        const payload = JSON.stringify({
+            title:"new 알림",
+            body: "알림알림알림알림",
+            url:"https://front02-eight.vercel.app/"
+        });
+        const notifications = ss.map(item => {
+            console.log('item=',item);
+            return webpush.sendNotification(item.sub, payload);            
+        })
+
+        console.log('notifications=',notifications);
+        await Promise.all(notifications);
+
+        res.json({message:'푸시알람 전송성공'});
+    }catch(e){
+        console.log(e);
+        res.json({message:'푸시알람 전송실패'});
+    }
+    
+});
 
 
 app.use((req,res,next)=>{
