@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Input, List, Spin, Button, message } from "antd";
 import axios from "axios";
-import { StarOutlined, StarFilled, ReloadOutlined } from "@ant-design/icons";
+import {StarOutlined, StarFilled, ReloadOutlined, EnvironmentOutlined} from "@ant-design/icons";
 import styles from "../css/MySearch.module.css";
+import Myloca from "./Myloca.jsx";
+
+
 
 const { Search } = Input;
 
@@ -131,7 +134,7 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
                 <div className={styles.resultsWrapper}>
                     {isLoading ? (
                         <div className={styles.loading}>
-                            <Spin tip="검색 중..." />
+                            <Spin tip="Loading..." fullscreen/>
                         </div>
                     ) : showNoResults ? (
                         <div className={styles.noResults}>
@@ -145,6 +148,7 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
                                 renderItem={(item) => (
                                     <List.Item
                                         actions={[
+                                            <Myloca stop={item}></Myloca>,
                                             <span
                                                 onClick={(e) => {
                                                     e.stopPropagation();

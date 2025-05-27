@@ -24,45 +24,44 @@ function App() {
 
   }
 
-    //  푸시 알람 받을
-    useEffect(() => {
-        console.log("service worker");
-        if ("serviceWorker" in navigator && "PushManager" in window) {
-            navigator.serviceWorker.ready.then((registration) => {
-                console.log("service worker ready");
-                registration.pushManager
-                    .subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: "BMmKoGrWCQP7pnUGgYREvgZt4wHVChew725lZWgIURqqPk5TS52xx3O22bgtEPOH1tCWGuOzSyI-VTppVG-RbhY",
-                    })
-                    .then((subscription) => {
-                        return fetch(`${API_URL}/subscribe`, {
-                            method: "POST",
-                            body: JSON.stringify(subscription),
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        })
-                            .then((res)=>{
-                                console.log(res);
-                                console.log('구독성공');
-                            })
-                            .catch((err)=>{
-                                console.log("구독실패");
-                                console.log(err);
-                            });
-                    })
-                    .catch((error) => {
-                        console.error("푸시 구독 실패:", error);
-                    });
-            });
-        }
-    }, []);
 
+  const deaguSub = () =>{
+      if ("serviceWorker" in navigator && "PushManager" in window) {
+          navigator.serviceWorker.ready.then((registration) => {
+              console.log("service worker ready");
+              registration.pushManager
+                  .subscribe({
+                      userVisibleOnly: true,
+                      applicationServerKey: "BMmKoGrWCQP7pnUGgYREvgZt4wHVChew725lZWgIURqqPk5TS52xx3O22bgtEPOH1tCWGuOzSyI-VTppVG-RbhY",
+                  })
+                  .then((subscription) => {
+                      return fetch(`${API_URL}/subscribe`, {
+                          method: "POST",
+                          body: JSON.stringify(subscription),
+                          headers: {
+                              "Content-Type": "application/json",
+                          },
+                      })
+                          .then((res)=>{
+                              console.log(res);
+                              console.log('구독성공');
+                          })
+                          .catch((err)=>{
+                              console.log("구독실패");
+                              console.log(err);
+                          });
+                  })
+                  .catch((error) => {
+                      console.error("푸시 구독 실패:", error);
+                  });
+          });
+      }
+  }
   return (
     <>
       <h1>{hello}</h1>
       <p>{data}</p>
+        <button onClick={deaguSub}>대구구독</button>
 
       <button onClick={getRoot}>백엔드요청</button>
     </>

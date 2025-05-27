@@ -36,6 +36,14 @@ app.use(mymid);
 const ss = [];
 
 app.post('/subscribe',(req,res,next)=> {
+    console.log(req.body);
+    console.log(req.body.sub);
+    console.log(req.body.sub.endpoint);
+    console.log(req.body.sub.keys.p256dh);
+    console.log(req.body.sub.keys.auth);
+    console.log(req.body.city);
+
+
     ss.push({sub:req.body});
     console.log(ss);
     res.send('구독 성공');

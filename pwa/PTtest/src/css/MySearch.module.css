@@ -88,3 +88,9 @@
 .toggleButton {
     width: 150px;
 }
+
+.mapButton {
+    margin-left: 8px;
+    border: none;
+    box-shadow: none;
+}

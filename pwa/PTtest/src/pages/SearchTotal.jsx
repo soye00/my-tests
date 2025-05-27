@@ -32,6 +32,7 @@ function SearchTotal(props) {
         let lng = longitude;
         return { lat, lng };
     };
+
     const searchTotal = async (value) =>{
         if(value){
             let res = await kakaoMap.getSearchTotal(value);
