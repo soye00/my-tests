@@ -93,8 +93,8 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
         message.success(
             {
                 content: isFavorite
-                ? "즐겨찾기에서 제거되었습니다."
-                : "즐겨찾기에 추가되었습니다.",
+                ? "나의 버스에서 제거되었습니다."
+                : "나의 버스에서 추가되었습니다.",
                 key,
                 duration: 2,
     }
@@ -109,7 +109,7 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
 
     return (
         <div className={styles.container}>
-            <h3 className={styles.title}>대구 버스 정류장 검색</h3>
+            <h3 className={styles.title}>나의 버스 등록</h3>
             <div className={styles.searchWrapper}>
                 <Search
                     ref={searchRef}

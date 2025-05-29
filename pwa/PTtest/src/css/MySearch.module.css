@@ -1,19 +1,21 @@
 .container {
     padding: 1rem;
     box-sizing: border-box;
-    max-width: 57.5rem;
+    /*max-width: 57.5rem;*/
+    width: 100%;
     /*margin: 0 auto;*/
 }
 
 .title {
     margin-bottom: 1rem;
+    /*margin-left: 1rem;*/
 }
 
 .searchWrapper {
     display: flex;
     gap: 8px;
-
     margin-bottom: 1rem;
+    background-color: orange;
 }
 
 .searchInput {
@@ -29,6 +31,7 @@
     min-height: 300px;
     max-height: 400px;
     overflow-y: auto;
+    background-color: gray;
 }
 
 .loading {
@@ -38,6 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .noResults {
@@ -73,21 +77,25 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 2px 0;
+    background-color: yellow;
 }
 
 .favoriteIcon {
     cursor: pointer;
+    background-color: purple;
+
 }
 
 .buttonWrapper {
     min-height: 32px;
     display: flex;
     justify-content: center;
+    background-color: pink;
 }
 
-.toggleButton {
-    width: 150px;
-}
+/*.toggleButton {*/
+/*    width: 150px;*/
+/*}*/
 
 .mapButton {
     margin-left: 8px;

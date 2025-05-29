@@ -4,6 +4,7 @@ import { ReloadOutlined, StarFilled } from "@ant-design/icons";
 import axios from "axios";
 import MySearch from "../component/MySearch";
 import styles from "../css/My.module.css";
+import Myloca from "../component/Myloca.jsx";
 
 const My = () => {
     const [favorites, setFavorites] = useState([]);
@@ -69,7 +70,7 @@ const My = () => {
             const isFavorite = prev.some((fav) => fav.bsId === stop.bsId);
             if (isFavorite) {
                 const newFavorites = prev.filter((fav) => fav.bsId !== stop.bsId);
-                // 즐겨찾기 제거 후 목록이 비어 있지 않으면 첫 번째 정류장 선택
+
                 if (newFavorites.length > 0) {
                     setSelectedStop(newFavorites[0]);
                 } else {
@@ -101,9 +102,9 @@ const My = () => {
             />
             <div className={styles.contentWrapper}>
                 <div className={styles.favoritesWrapper}>
-                    <h3 className={styles.favoritesTitle}>즐겨찾기 목록</h3>
+                    <h3 className={styles.favoritesTitle}>나의 버스 목록</h3>
                     {favorites.length === 0 ? (
-                        <p className={styles.noFavorites}>즐겨찾기가 없습니다.</p>
+                        <p className={styles.noFavorites}>나의 버스 목록이 없습니다.</p>
                     ) : (
                         <List
                             bordered
@@ -111,6 +112,7 @@ const My = () => {
                             renderItem={(item) => (
                                 <List.Item
                                     actions={[
+                                        <Myloca stop={item}></Myloca>,
                                         <span
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -148,7 +150,8 @@ const My = () => {
                             title={
                                 <div className={styles.cardTitle}>
                                     <span className={styles.cardTitleText} title={selectedStop.bsNm}>
-                                        {selectedStop.bsNm.length > 15 ? `${selectedStop.bsNm.substring(0, 15)}...` : selectedStop.bsNm} 실시간 도착 정보
+                                        {/*{selectedStop.bsNm.length > 15 ? `${selectedStop.bsNm.substring(0, 15)}...` : selectedStop.bsNm} 실시간 도착 정보*/}
+                                        {`${selectedStop.bsNm} 실시간 도착 정보`}
                                     </span>
                                     <span className={styles.refreshTimer}>
                                         {`${secondsRemaining}초 후 갱신`}
