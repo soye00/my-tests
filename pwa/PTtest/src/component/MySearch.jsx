@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import {AutoComplete, List, Spin, Button, message, Input} from "antd";
+import { AutoComplete, List, Spin, Button, message, Input } from "antd";
 import axios from "axios";
 import { StarOutlined, StarFilled, ReloadOutlined } from "@ant-design/icons";
-import debounce from "lodash/debounce"; // lodash/debounce로 수정
+import debounce from "lodash/debounce";
 import styles from "../css/MySearch.module.css";
 import Myloca from "./Myloca.jsx";
 
@@ -14,7 +14,7 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [showNoResults, setShowNoResults] = useState(false);
     const [searchValue, setSearchValue] = useState("");
-    const [options, setOptions] = useState([]); // 검색어 추천 옵션
+    const [options, setOptions] = useState([]);
     const searchRef = useRef(null);
 
     useEffect(() => {
@@ -32,7 +32,6 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
         }
     }, []);
 
-    // 검색 API 호출 함수
     const fetchSuggestions = async (value) => {
         if (value.trim() === "") {
             setOptions([]);
@@ -45,18 +44,16 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
                 `https://businfo.daegu.go.kr:8095/dbms_web_api/bs/search?searchText=${value}&wincId=`
             );
             if (response.data.header.success) {
-                // 입력값이 포함된 정류장 이름만 필터링
                 const filteredResults = response.data.body.filter((item) =>
                     item.bsNm.toLowerCase().includes(value.toLowerCase())
                 );
 
-                // 중복 제거 (bsId 기준)
                 const uniqueResults = Array.from(
                     new Map(filteredResults.map((item) => [item.bsId, item])).values()
                 );
 
                 const suggestions = uniqueResults.map((item) => ({
-                    value: item.bsId, // 고유한 bsId를 value로 사용 -> Keys should be unique 해결
+                    value: item.bsId,
                     label: (
                         <div>
                             <div>{item.bsNm}</div>
@@ -83,24 +80,20 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
         }
     };
 
-    // 디바운싱된 검색 함수
     const debouncedFetchSuggestions = debounce(fetchSuggestions, 300);
 
-    // AutoComplete의 onSearch 핸들러
     const handleSearch = (value) => {
         setSearchValue(value);
         debouncedFetchSuggestions(value);
     };
 
-    // AutoComplete의 onSelect 핸들러
     const handleSelect = (value, option) => {
-        setSearchValue(option.data.bsNm); // 선택된 정류장 이름으로 설정
-        setSearchResults([option.data]); // 선택된 정류장만 결과로 표시
+        setSearchValue(option.data.bsNm);
+        setSearchResults([option.data]);
         setIsSearched(true);
         setShowNoResults(false);
     };
 
-    // 기존 검색 버튼 클릭 시 동작
     const handleSearchButton = (value) => {
         if (value.trim() === "") {
             setSearchResults([]);
@@ -208,35 +201,40 @@ const MySearch = ({ onToggleFavorite, favorites }) => {
                                 bordered
                                 dataSource={searchResults}
                                 renderItem={(item) => (
-                                    <List.Item
-                                        key={item.bsId} // 고유한 key 추가
-                                        actions={[
-                                            <Myloca stop={item}></Myloca>,
-                                            <span
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    handleToggleFavorite(item);
-                                                }}
-                                                className={styles.favoriteIcon}
-                                            >
-                        {favorites.some((fav) => fav.bsId === item.bsId) ? (
-                            <StarFilled style={{ color: "#fadb14" }} />
-                        ) : (
-                            <StarOutlined />
-                        )}
-                      </span>,
-                                        ]}
-                                        className={styles.listItem}
-                                    >
+                                    <List.Item key={item.bsId} className={styles.listItem}>
                                         <div className={styles.listItemContent}>
-                                            <div className={styles.stopName} title={item.bsNm}>
-                                                {item.bsNm}
+                                            <div className={styles.textContent}>
+                                                <div className={styles.stopName} title={item.bsNm}>
+                                                    {item.bsNm}
+                                                </div>
+                                                <div
+                                                    className={styles.stopId}
+                                                    title={`정류장 ID: ${item.bsId}`}
+                                                >
+                                                    정류장 ID: {item.bsId}
+                                                </div>
+                                                <div
+                                                    className={styles.routeList}
+                                                    title={`경유 노선: ${item.routeList}`}
+                                                >
+                                                    경유 노선: {item.routeList}
+                                                </div>
                                             </div>
-                                            <div className={styles.stopId} title={`정류장 ID: ${item.bsId}`}>
-                                                정류장 ID: {item.bsId}
-                                            </div>
-                                            <div className={styles.routeList} title={`경유 노선: ${item.routeList}`}>
-                                                경유 노선: {item.routeList}
+                                            <div className={styles.actions}>
+                                                <Myloca stop={item} />
+                                                <span
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleToggleFavorite(item);
+                                                    }}
+                                                    className={styles.favoriteIcon}
+                                                >
+                          {favorites.some((fav) => fav.bsId === item.bsId) ? (
+                              <StarFilled style={{ color: "#fadb14" }} />
+                          ) : (
+                              <StarOutlined />
+                          )}
+                        </span>
                                             </div>
                                         </div>
                                     </List.Item>

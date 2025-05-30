@@ -32,8 +32,13 @@ const My = () => {
             )
             .then((response) => {
                 if (response.data.header.success) {
-                    let data = [...response.data.body.list].filter(item => item.arrState === "도착예정");
-                    response.data.body.list.splice(response.data.body.list.findIndex(item => item.arrState === "도착예정"), 1);
+                    let data = [...response.data.body.list].filter(
+                        (item) => item.arrState === "도착예정"
+                    );
+                    response.data.body.list.splice(
+                        response.data.body.list.findIndex((item) => item.arrState === "도착예정"),
+                        1
+                    );
                     response.data.body.list.push(...data);
                     setArrivalInfo(response.data.body);
                 }
@@ -96,10 +101,7 @@ const My = () => {
 
     return (
         <div className={styles.container}>
-            <MySearch
-                onToggleFavorite={handleToggleFavorite}
-                favorites={favorites}
-            />
+            <MySearch onToggleFavorite={handleToggleFavorite} favorites={favorites} />
             <div className={styles.contentWrapper}>
                 <div className={styles.favoritesWrapper}>
                     <h3 className={styles.favoritesTitle}>나의 버스 목록</h3>
@@ -111,30 +113,35 @@ const My = () => {
                             dataSource={favorites}
                             renderItem={(item) => (
                                 <List.Item
-                                    actions={[
-                                        <Myloca stop={item}></Myloca>,
-                                        <span
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleToggleFavorite(item);
-                                            }}
-                                            className={styles.favoriteIcon}
-                                        >
-                                            <StarFilled style={{ color: "#fadb14" }} />
-                                        </span>,
-                                    ]}
                                     onClick={() => handleSelectStop(item)}
                                     className={styles.listItem}
                                 >
                                     <div className={styles.listItemContent}>
-                                        <div className={styles.stopName} title={item.bsNm}>
-                                            {item.bsNm}
+                                        <div className={styles.textContent}>
+                                            <div className={styles.stopName} title={item.bsNm}>
+                                                {item.bsNm}
+                                            </div>
+                                            <div className={styles.stopId} title={`정류장 ID: ${item.bsId}`}>
+                                                정류장 ID: {item.bsId}
+                                            </div>
+                                            <div
+                                                className={styles.routeList}
+                                                title={`경유 노선: ${item.routeList}`}
+                                            >
+                                                경유 노선: {item.routeList}
+                                            </div>
                                         </div>
-                                        <div className={styles.stopId} title={`정류장 ID: ${item.bsId}`}>
-                                            정류장 ID: {item.bsId}
-                                        </div>
-                                        <div className={styles.routeList} title={`경유 노선: ${item.routeList}`}>
-                                            경유 노선: {item.routeList}
+                                        <div className={styles.actions}>
+                                            <Myloca stop={item} />
+                                            <span
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleToggleFavorite(item);
+                                                }}
+                                                className={styles.favoriteIcon}
+                                            >
+                        <StarFilled style={{ color: "#fadb14" }} />
+                      </span>
                                         </div>
                                     </div>
                                 </List.Item>
@@ -149,13 +156,12 @@ const My = () => {
                         <Card
                             title={
                                 <div className={styles.cardTitle}>
-                                    <span className={styles.cardTitleText} title={selectedStop.bsNm}>
-                                        {/*{selectedStop.bsNm.length > 15 ? `${selectedStop.bsNm.substring(0, 15)}...` : selectedStop.bsNm} 실시간 도착 정보*/}
-                                        {`${selectedStop.bsNm} 실시간 도착 정보`}
-                                    </span>
+                  <span className={styles.cardTitleText} title={selectedStop.bsNm}>
+                    {`${selectedStop.bsNm} 실시간 도착 정보`}
+                  </span>
                                     <span className={styles.refreshTimer}>
-                                        {`${secondsRemaining}초 후 갱신`}
-                                    </span>
+                    {`${secondsRemaining}초 후 갱신`}
+                  </span>
                                     <Button
                                         icon={<ReloadOutlined />}
                                         onClick={handleRefresh}
@@ -171,8 +177,12 @@ const My = () => {
                                         <List.Item className={styles.arrivalItem}>
                                             <div className={styles.arrivalContent}>
                                                 <div className={styles.routeInfo}>
-                                                    <div className={styles.routeNo} title={`${item.routeNo} ${item.routeNote || ''}`}>
-                                                        {item.routeNo} {item.routeNote && `(${item.routeNote})`}
+                                                    <div
+                                                        className={styles.routeNo}
+                                                        title={`${item.routeNo} ${item.routeNote || ""}`}
+                                                    >
+                                                        {item.routeNo}{" "}
+                                                        {item.routeNote && `(${item.routeNote})`}
                                                     </div>
                                                     <div
                                                         className={styles.arrivalState}
@@ -195,7 +205,10 @@ const My = () => {
                                                                     : `${item.arrState} 후 도착`}
                                                     </div>
                                                 </div>
-                                                <div className={styles.vehicleNo} title={`버스 번호: ${item.vhcNo2}`}>
+                                                <div
+                                                    className={styles.vehicleNo}
+                                                    title={`버스 번호: ${item.vhcNo2}`}
+                                                >
                                                     버스 번호: {item.vhcNo2}
                                                 </div>
                                             </div>
@@ -204,7 +217,9 @@ const My = () => {
                                     className={styles.arrivalList}
                                 />
                             ) : (
-                                <div className={styles.loadingMessage}>도착 정보를 불러오는 중...</div>
+                                <div className={styles.loadingMessage}>
+                                    도착 정보를 불러오는 중...
+                                </div>
                             )}
                         </Card>
                     </div>

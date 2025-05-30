@@ -114,6 +114,15 @@ const Myloca = ({ stop }) => {
         setIsMapModalVisible(false);
         setCoords(null);
     };
+    
+    //마커 이미지의 크기를 화면 크기에 따라 조정
+    const markerImage = new window.kakao.maps.MarkerImage(
+        "/stop_marker.png",
+        new window.kakao.maps.Size(window.innerWidth < 768 ? 40 : 50, window.innerWidth < 768 ? 40 : 50), // 모바일에서 크기 축소
+        {
+            offset: new window.kakao.maps.Point(window.innerWidth < 768 ? 20 : 25, window.innerWidth < 768 ? 38 : 48),
+        }
+    );
 
     return (
         <>
