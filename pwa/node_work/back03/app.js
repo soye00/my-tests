@@ -5,6 +5,19 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const cors = require("cors");
+const nunjucks = require("nunjucks");
+const { title } = require("process");
+const multer = require('multer');
+const fs = require('fs');
+
+
+try{
+  fs.readdirSync('uploads');
+}catch(e){
+  console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+  fs.mkdirSync('uploads');
+}
+
 
 require("dotenv").config();
 
@@ -15,6 +28,25 @@ require("dotenv").config();
 
 const app = express();
 
+
+// app.use((req,res,next)=>{
+//   console.log('그다음 미들웨어로 진행');
+//   next();
+// },(req,res,next)=>{
+//   console.log('next 미들웨어');
+//   try{
+//     as:dksfj;lskjfl;
+//   }catch{
+//     console.log(e);
+//     next(e);
+//   }
+//   next();
+// },(req,res,next)=>{
+//   console.log('다음 미들웨어')
+//   next();
+// })
+
+
 // cors 에러 해결 미들웨어 
 app.use(
   cors({
@@ -23,12 +55,19 @@ app.use(
 })
 );
 
+// 미들웨어 확장 : 미들웨어 사용 다른 방법 
+app.use((req,res,next)=>{
+  if(process.env.NODE_ENV === 'production')
+  morgan('combined')(req,res,next);
+  else morgan('dev')(req,res,next);
+});
+
 // 모두 허용 => app.use(cors())
 
 app.use(morgan("dev"));
 
 // 로그남기기
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 // public 에 있는거 요청했을경우 응답해주기
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json()); // req.body 확인
@@ -47,6 +86,42 @@ app.use(expressSession({
 );
 
 app.set("port", 4000);
+
+
+app.set('view engine','html');
+nunjucks.configure('views',{
+  express:app,
+  watch:true
+});
+
+
+const upload = multer({
+  storage: multer.diskStorage({ // 파일은 디스크에 저장
+    destination(req,res,done){
+      done(null,'uploads/'); // 파일 업로드 되면 uploads 경로에 저장
+    },
+    // 파일명은 원래 파일명 + 현재시간 + 확장자로 설정 
+    filename(req,file,done){
+      const ext = path.extname(file.originalname);
+      console.log(ext);
+      done(null, path.basename(file.originalname,ext)+ Date.now()+ext);
+    },
+  }),
+  limits: {fileSize: 100*1024*1024},
+})
+
+
+
+app.post("/upload",upload.single('image'),(req,res,next)=>{
+  console.log(req.file, req.body);
+  res.send('저장성공');
+});
+
+app.post("/uploads", upload.array('many'),(req,res,next)=>{
+  console.log('여러개 올림');
+  console.log(req.file, req.body);
+  res.send('저장성공');
+});
 
 
 app.post("/login",(req,res,next)=> {
@@ -123,20 +198,48 @@ app.get('/getCookie',(req,res,next)=>{
     res.send("쿠키확인")
 })
 
+
+
+
 app.get("/", (req, res, next) => {
   console.log(req.body);
   console.log(req.query);
   console.log("/경로 요청");
-  res.send("성공");
+  res.locals.member = [{
+    name:'홍길동',
+    age:'20'
+  },
+  {
+    name:'홍길동',
+    age:'20'
+  },
+  {
+    name:'홍길동',
+    age:'20'
+  }]
+
+  res.locals.data = "새로운 데이터";
+  // res.send("성공");
+  res.render('index',{title:"제목"});
 });
+
+
+app.get("/multipart",(req,res,next)=>{
+  res.render('multipart')
+
+})
+
+
+
 
 app.get("/html", (req, res, next) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.use((err, req, res, next) => {
+  console.log('err 미들웨어 동작');
   console.log(err);
-  res.send(err);
+  res.send(err.toString());
 });
 
 app.listen(app.get("port"), () => {
