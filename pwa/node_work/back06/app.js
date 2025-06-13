@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var payRouter = require('./routes/pay');
+var cleanerRouter = require('./routes/cleaner');
 
 require("dotenv").config();  // .env
 const cors = require('cors');
@@ -9,7 +11,7 @@ const nunjucks = require("nunjucks");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var resRouter = require('./routes/res');
+var resRouter = require('./routes/reservation');
 
 var app = express();
 
@@ -29,5 +31,7 @@ nunjucks.configure("views", {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reservation', resRouter);
+app.use('/pay', payRouter);
+app.use('/cleaner', cleanerRouter )
 
 module.exports = app;
