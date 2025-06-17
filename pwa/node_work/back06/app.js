@@ -16,10 +16,17 @@ const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const resRouter = require('./routes/reservation');
 const loginRouter = require('./routes/login');
+const backApiRouter = require('./routes/backApi/backAdmin');
+
 
 var app = express();
 
-app.use(cors())
+app.use(cors(
+    {
+      origin: 'http://localhost:5173',
+      credentials: true, // 쿠키값 허용
+    }
+))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,11 +49,19 @@ nunjucks.configure("views", {
   watch: true,
 });
 
+
+// 모든 적용 ? -> res.locals.
+app.use((req,res,next) => {
+    res.locals.user = req.session.user;
+    next();
+})
+
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/reservation', resRouter);
 app.use('/pay', payRouter);
 app.use('/cleaner', cleanerRouter )
 app.use('/login', loginRouter);
+app.use('/back', backApiRouter);
 
 module.exports = app;
