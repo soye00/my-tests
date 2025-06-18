@@ -46,6 +46,11 @@ function App() {
     })
   }
 
+  const reqKakaoLogin = () => {
+    window.location.href='http://localhost:4003/api/kakaologin'
+  }
+
+
   return (
     <>
       {loginStatus ? (
@@ -55,7 +60,13 @@ function App() {
           <button onClick={reqLogout}>로그아웃</button>
         </div>
       ) : (
-        <button onClick={reqLogin}>로그인</button>
+        <>
+          <button onClick={reqLogin}>로그인</button>
+          <div>
+            <button onClick={reqKakaoLogin}>카카오로그인</button>  
+          </div>          
+        </>
+        
       ) }
 
       
