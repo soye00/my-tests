@@ -16,8 +16,12 @@ router.get('/', function(req, res, next) {
     res.render('login');
 });
 
+
 router.post('/', async function(req, res, next) {
-    const {phone, password} = req.body;
+    console.log(req.body);
+    const {phone, password, endpoint, p256dh, auth} = req.body;
+
+    console.log(endpoint, p256dh, auth);
     // console.log(phone, password);
 
     const {data, error} = await supabase.from('cleaner')

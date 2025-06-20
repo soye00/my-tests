@@ -17,6 +17,13 @@ const adminRouter = require('./routes/admin');
 const resRouter = require('./routes/reservation');
 const loginRouter = require('./routes/login');
 const backApiRouter = require('./routes/backApi/backAdmin');
+const webpush = require('web-push');
+
+webpush.setVapidDetails(
+    'https://port-0-pwa-manaowvf213a09cd.sel4.cloudtype.app',
+    'BJxlq4fyngGNbsKP7ekeYqAIzUeA7FPcq7dBxLCUrK-J8y1pxbllsZSXocqhR2JscxcdgO-O7A-6Acac35zEKHg',
+    'YFJJmSU6_mqIMcuSqIDbsnTLbdAUxUYJ7azUmdZNx6o'
+)
 
 
 var app = express();
