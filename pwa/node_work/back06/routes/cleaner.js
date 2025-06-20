@@ -87,7 +87,7 @@ router.post('/complete', async (req, res) => {
 
                 // Supabase Storage에 업로드
                 const { data: uploadData, error: uploadError } = await supabase.storage
-                    .from('cleaner-images')
+                    .from('ice')
                     .upload(fileName, buffer, {
                         contentType: file.type,
                         cacheControl: '3600'
@@ -100,7 +100,7 @@ router.post('/complete', async (req, res) => {
 
                 // 공개 URL 생성
                 const { data: urlData } = supabase.storage
-                    .from('cleaner-images')
+                    .from('ice')
                     .getPublicUrl(fileName);
 
                 uploadedFilePaths.push(urlData.publicUrl);
