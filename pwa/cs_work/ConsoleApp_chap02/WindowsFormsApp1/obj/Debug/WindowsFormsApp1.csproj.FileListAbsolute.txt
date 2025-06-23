@@ -1,0 +1,11 @@
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe.config
+E:\ysy\pwa\cs_work\ConsoleApp_chap02\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
